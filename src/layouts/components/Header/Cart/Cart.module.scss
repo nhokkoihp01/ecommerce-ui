@@ -1,0 +1,12 @@
+.cart{
+  width: 100%;
+  cursor: pointer;
+  padding: 0 8px;
+  flex: 1;
+}
+.cart-icon{
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  color: var(--primary-color);
+}

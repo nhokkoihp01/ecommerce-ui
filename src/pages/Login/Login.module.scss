@@ -1,0 +1,30 @@
+.wrapper {
+  width: 100%;
+  padding-top: 200px;
+
+}
+
+.form-login {
+  width: 100%;
+  padding: 60px 12px 60px 12px;
+  font-weight: 400;
+  color: var(--text-color);
+  box-shadow: 0 0.0625rem 8px 0 rgba(0, 0, 0, 0.5);
+
+}
+.login-header{
+  margin-bottom: 30px;
+}
+
+.input-item {
+  font-size: 1.6rem;
+  padding: 12px 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  outline: none;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  &:focus{
+    border-color: var(--text-color);
+  }
+}
