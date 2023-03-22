@@ -6,7 +6,8 @@ import {Container} from "@mui/material";
 
 
 import styles from "./Home.module.scss";
-import Category from "~/pages/Home/category";
+import Category from "~/pages/Home/Category";
+
 
 
 
