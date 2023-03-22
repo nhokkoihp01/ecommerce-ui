@@ -1,7 +1,7 @@
 import instance from "~/interceptors/axios";
-// export const getCategory = async () => {
-//   return await instance.get("/product/1.0.0/product/industrials");
-// };
+export const getCategory = async () => {
+  return await instance.get("/category");
+};
 // export const getProductDetailById = async (id) => {
 //   return await instance.get(`/product/1.0.0/product/${id}/detail`);
 // };
