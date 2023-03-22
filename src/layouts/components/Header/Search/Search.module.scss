@@ -41,4 +41,40 @@
   transform: translateY(-50%);
 
 }
+.search-result {
+  width: 600px;
+  padding: 12px 0;
+  border-radius: 3px;
+  background-color: var(--while-color);
+  box-shadow: rgb(0 0 0 /12%) 0 2px 12px;
+  max-height: 282px;
+  height: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+
+
+}
+.result-item {
+  width: 100%;
+  padding: 6px 6px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover{
+    background-color: #fafafa;
+  }
+}
+.product-name {
+  width: 100%;
+  margin-left: 8px;
+  font-size: 1.4rem;
+  color: var(--text-color);
+  font-weight: 400;
+  line-height: 20px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
