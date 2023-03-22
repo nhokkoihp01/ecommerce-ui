@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #7395ae;
+    --primary-color: rgba(10,104,255);
     --while-color: #FFFFFF;
-    --text-color: #333;
+    --text-color: rgba(128,128,137);
 
     /*height*/
     --height-header: 120px;
@@ -27,6 +27,9 @@ body {
 }
 a {
     text-decoration: none;
+}
+input{
+    font-size: 1.6rem;
 }
  /*customer material ui*/
 .css-1oqqzyl-MuiContainer-root {
