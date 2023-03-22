@@ -11,7 +11,6 @@ const cx = classNames.bind(styles);
 
 function CategoryItem(props) {
     const {categories} = props;
-    console.log(categories);
     const settings = {
         dots: false,
         infinite: true,

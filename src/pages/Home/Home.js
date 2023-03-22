@@ -6,7 +6,9 @@ import {Container} from "@mui/material";
 
 
 import styles from "./Home.module.scss";
-import Category from "~/pages/Home/category";
+import Category from "~/pages/Home/Category";
+import Product from "~/pages/Home/Product";
+
 
 
 
@@ -17,6 +19,7 @@ function Home(props) {
         <div className={cx('wrapper')}>
             <Container>
                <Category/>
+                <Product/>
             </Container>
         </div>
 
