@@ -3,6 +3,7 @@ import Home from "~/pages/Home";
 import Login from "~/pages/Login";
 import ProductDetail from "~/pages/ProductDetail";
 
+
 const publicRoutes = [
     {path: '/', component: Home},
     {path: config.routes.home, component: Home},
