@@ -50,11 +50,11 @@ function CategoryItem(props) {
         <div>
             <Slider {...settings}>
                 {
-                    categories.map((item,index)=>{
+                    categories?.map((item,index)=>{
                         return (
                             <Link
                                 key={item.id}
-                                to={``}
+                                to={`/product-category/${item.id}`}
                                 className={cx("category-item")}>
                                 <div className={cx("box-image")}>
                                     <img className={cx("image")} alt={item.name} src={item.image}></img>

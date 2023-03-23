@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 function Category(props) {
     const [categories,setCategories] = useState([])
     useEffect(()=>{
-        getCategory().then((res)=> setCategories(res.data.data))
+        getCategory().then((res)=> setCategories(res.data))
 
     },[])
 
