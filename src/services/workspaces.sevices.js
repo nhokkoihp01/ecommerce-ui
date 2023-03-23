@@ -1,7 +1,8 @@
 import instance from "~/interceptors/axios";
 
 export const getCategory = async () => {
-    return await instance.get("/category");
+    const result = await instance.get("/category");
+    return result.data;
 };
 export const getAllProduct = async () => {
     return await instance.get("/products/all");

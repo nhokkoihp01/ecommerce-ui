@@ -1,5 +1,6 @@
 import instance from "~/interceptors/axios";
 import authHeader from "~/services/auth/authHeader";
+import axios from "axios";
 
 
 const login = async (username, password) => {
@@ -14,7 +15,7 @@ const login = async (username, password) => {
         .catch((e) => console.log("failed"))
 }
 const getInfoUser = () => {
-      return  instance.get("/users/me",{headers:authHeader()});
+      return axios.get("http://localhost:8080/api/users/me",{headers:authHeader()});
 }
 const getCurrentUser = () => {
      return JSON.parse(localStorage.getItem("token"))

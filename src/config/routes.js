@@ -3,7 +3,7 @@ const routes = {
     login: "/login",
     register: "/register",
     productDetail:"/product-detail/:id/product",
-
+    product: "/product-category/:id",
     // checkout: "/checkout",
     // sellerManager: "/seller",
     // productDetail: "/product-detail/:id/product",
