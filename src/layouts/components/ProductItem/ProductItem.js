@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from "classnames/bind";
 
 import styles from "./ProductItem.module.scss";
+import {Link} from "react-router-dom";
+import config from "~/config";
 
 
 const cx = classNames.bind(styles);
@@ -10,12 +12,11 @@ const cx = classNames.bind(styles);
 
 function ProductItem(props) {
     const {data} = props;
-    console.log(data)
     const convertCurrency = (currency) =>{
         return  currency.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     }
     return (
-        <div  className={cx('wrapper')}>
+        <Link to={config.routes.productDetail} className={cx('wrapper')}>
             <div className={cx('box-image')}>
                 <img className={cx('product-image')} src={data.image} alt="image"/>
             </div>
@@ -29,7 +30,7 @@ function ProductItem(props) {
                 <span className={cx('label')}>Giảm</span>
             </div>
             <p className={cx('quantity')}>Số lượng tồn:{data.quantity}</p>
-        </div>
+        </Link>
     );
 }
 

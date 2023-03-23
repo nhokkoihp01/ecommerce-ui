@@ -2,6 +2,7 @@ const routes = {
     home: "/home",
     login: "/login",
     register: "/register",
+    productDetail:"/product-detail"
     // checkout: "/checkout",
     // sellerManager: "/seller",
     // productDetail: "/product-detail/:id/product",
