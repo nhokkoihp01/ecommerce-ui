@@ -3,13 +3,13 @@ import classNames from "classnames/bind";
 import {useMediaQuery} from "react-responsive";
 import { Container} from "@material-ui/core";
 import {Grid} from "@mui/material";
+import {Link} from "react-router-dom";
 
 import styles from "./Header.module.scss";
 import logo from '~/assets/logo/logo.jpg'
 import TopNavbar from "~/layouts/components/Header/TopNavbar";
 import Search from "~/layouts/components/Header/Search";
 import Cart from "~/layouts/components/Header/Cart/Cart";
-import {Link} from "react-router-dom";
 import config from "~/config";
 import {AiFillHome} from 'react-icons/ai';
 import {GiHamburgerMenu} from 'react-icons/gi';
@@ -30,9 +30,9 @@ function Header(props) {
                     <Grid container justifyContent={"space-between"} alignItems={"center"}>
                         { !isTablet && (
                             <Grid item md={1} justifyContent={"flex-start"}>
-                                <div className={cx('logo')}>
+                                <Link to={config.routes.home} className={cx('logo')}>
                                     <img src={logo} alt="logo"/>
-                                </div>
+                                </Link>
                             </Grid>
                         )}
                         <Grid item md={8} sm={8}>
