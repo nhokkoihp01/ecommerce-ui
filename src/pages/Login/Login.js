@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import classNames from "classnames/bind";
 import {Button, Container, Grid} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import validator from 'validator';
 
 import styles from "./Login.module.scss";
 import AuthService from "~/services/auth/AuthService";
+import config from "~/config";
 
 
 const cx = classNames.bind(styles);
@@ -12,26 +14,40 @@ const cx = classNames.bind(styles);
 function Login(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("")
     const navigate = useNavigate();
+    const handleChangeUsername = (e) => {
+        setUsername(e.target.value)
+    }
+    const handleChangePassword = (e) => {
+        setPassword(e.target.value)
+    }
     const handleLogin = async (e) => {
-        e.preventDefault();
-        try {
-            await AuthService.login(username, password).then(
-                () => {
-                    //
-                    navigate("/")
-                    window.location.reload()
-                },
-                (error)=>{
-                    console.log(error)
-                }
-            )
+        if (validator.isEmpty(username) || validator.isEmpty(password)) {
+            setError("Tài khoản và mật khẩu không được để trống")
+        } else {
+            const response = await AuthService.login(username, password);
+            if (response?.data.accessToken) {
+                navigate(config.routes.home)
+            }
 
-
-        } catch (err) {
-            console.log(err);
+            if (response?.data.status === "UNAUTHORIZED") {
+                setError("Tài khoản hoặc mật khẩu không đúng")
+            } else {
+                setError("")
+            }
         }
-    };
+
+
+    }
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleLogin()
+        }
+    }
+
+
+
     return (
         <div className={cx('wrapper')}>
             <Container>
@@ -39,17 +55,29 @@ function Login(props) {
                     <Grid item container md={4}>
                         <div className={cx("form-login")}>
                             <h1 className={cx('login-header')}>Đăng nhập</h1>
+                            <div className={cx('error')}>
+                                <span>{error}</span>
+                            </div>
                             <input className={cx('input-item')}
                                    type="text"
                                    value={username}
-                                   onChange={(e) => setUsername(e.target.value)}
+                                   onChange={handleChangeUsername}
                                    placeholder="Tên tài khoản"/>
                             <input className={cx('input-item')}
                                    type="password"
                                    value={password}
-                                   onChange={(e) => setPassword(e.target.value)}
+                                   onKeyPress={handleKeyPress}
+                                   onChange={handleChangePassword}
                                    placeholder="Nhập mật khẩu"/>
-                            <Button type={"submit"} onClick={handleLogin} variant={"contained"}>Login</Button>
+                            <div className={cx('function')}>
+                                <Button size={"large"}
+                                        className={cx('btn-login')}
+                                        type={"submit"}
+                                        onClick={handleLogin}
+                                        variant={"contained"}>
+                                    Đăng nhập
+                                </Button>
+                            </div>
                         </div>
                     </Grid>
                 </Grid>

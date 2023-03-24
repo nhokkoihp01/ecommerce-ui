@@ -17,6 +17,7 @@ import UserDropdown from "./UserDropdown";
 import config from "~/config";
 import AuthService from "~/services/auth/AuthService";
 
+
 const cx = classNames.bind(styles);
 
 function TopNavbar(props) {
@@ -24,14 +25,24 @@ function TopNavbar(props) {
     const minMd = useMediaQuery({minWidth: 900});
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [languageFunction, setLanguageFunction] = useState(null);
-    const [user, setUser] = useState(false);
+    const [isUser, setIsUser] = useState(false);
+    const [user,setUser] = useState({})
     useEffect(() => {
-        AuthService.getInfoUser().then(
-            (res) => console.log(res)
-        )
+        async function fetchData() {
+            const response = await AuthService.getInfoUser()
+            const data = response?.data.data;
+            if(data){
+                setUser(data)
+                setIsUser(true)
+            }
+            else{
+                setIsUser(false)
+            }
+        }
+
+        fetchData()
 
     }, [])
-
     const handLeLanguageFunctionClick = (event) => {
         setLanguageFunction(event.currentTarget);
     };
@@ -253,7 +264,7 @@ function TopNavbar(props) {
                 Tiếng việt
               </span>
 
-                            {!user ? (
+                            {!isUser ? (
                                 <div className={cx("login-register")}>
                                     <Link
                                         to={config.routes.register}
@@ -269,7 +280,7 @@ function TopNavbar(props) {
                                     </Link>
                                 </div>
                             ) : (
-                                <UserDropdown/>
+                                <UserDropdown user={user}/>
                             )}
                         </div>
                     </Grid>

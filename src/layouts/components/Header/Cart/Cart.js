@@ -22,7 +22,6 @@ function Cart(props) {
     }))(Badge);
     return (
         <Tippy
-            content=""
             interactive
             placement="bottom-start"
             maxWidth={400}
