@@ -13,7 +13,6 @@ function Product(props) {
     useEffect(()=>{
         getAllProduct().then((res)=> setProducts(res.data.data))
     },[])
-    console.log(products)
     const isMaxWidth = useMediaQuery({maxWidth:1100})
     return (
         <div className={cx('wrapper')}>

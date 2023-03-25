@@ -31,7 +31,6 @@ function Content(props) {
 
         fetchData();
     },[id])
-    console.log(products)
     return (
         <div className={cx('wrapper')}>
             <div className={cx('filter')}>
