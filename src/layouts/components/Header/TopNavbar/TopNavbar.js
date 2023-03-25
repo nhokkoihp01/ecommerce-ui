@@ -85,7 +85,7 @@ function TopNavbar(props) {
                                 {
                                     isAdmin  && (
                                     <Link
-                                    to={""}
+                                    to={config.routes.managerProduct}
                                     className={cx("navbar-item", "navbar-separate")}
                                     >
                                     Quản lý sản phẩm

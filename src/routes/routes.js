@@ -4,6 +4,7 @@ import Login from "~/pages/Login";
 import ProductDetail from "~/pages/ProductDetail";
 import Product from "~/pages/Product";
 import Register from "~/pages/Register";
+import ManageProduct from "~/pages/ManageProduct";
 
 
 
@@ -14,6 +15,7 @@ const publicRoutes = [
     {path: config.routes.product, component: Product},
     {path: config.routes.login, component: Login, layout: null},
     {path: config.routes.register, component: Register, layout: null},
+    {path: config.routes.managerProduct, component: ManageProduct },
 
 
 ];

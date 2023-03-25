@@ -4,6 +4,7 @@ const routes = {
     register: "/register",
     productDetail:"/product-detail/:id/product",
     product: "/product-category/:id",
+    managerProduct: "/manage-product",
     // checkout: "/checkout",
     // sellerManager: "/seller",
     // productDetail: "/product-detail/:id/product",
