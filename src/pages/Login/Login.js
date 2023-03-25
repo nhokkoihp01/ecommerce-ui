@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {Button, Container, Grid} from "@mui/material";
 import {useNavigate} from "react-router-dom";
@@ -22,6 +22,18 @@ function Login(props) {
     const handleChangePassword = (e) => {
         setPassword(e.target.value)
     }
+    useEffect(() => {
+        if (username.length > 0 ) {
+            setError('')
+        }
+
+    }, [username])
+    useEffect(() => {
+        if (password.length > 0 ) {
+            setError('')
+        }
+
+    }, [password])
     const handleLogin = async (e) => {
         if (validator.isEmpty(username) || validator.isEmpty(password)) {
             setError("Tài khoản và mật khẩu không được để trống")

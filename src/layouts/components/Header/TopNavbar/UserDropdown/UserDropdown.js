@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 function UserDropdown(props) {
     const navigate = useNavigate()
     const {user} = props;
-
     const handleLogout = () => {
         AuthService.logout();
         navigate(config.routes.login)
@@ -41,7 +40,7 @@ function UserDropdown(props) {
                 )}
             >
                 <div className={cx("user-info")}>
-                    <img className={cx("avatar")} src={user.image} alt={user.name}></img>
+                    <img className={cx("avatar")} src={user.image == null ? avatar : user.image} alt={user.name}></img>
                     <span className={cx("username")}>{user.username}</span>
                 </div>
             </Tippy>

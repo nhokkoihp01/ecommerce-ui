@@ -26,17 +26,24 @@ function TopNavbar(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [languageFunction, setLanguageFunction] = useState(null);
     const [isUser, setIsUser] = useState(false);
-    const [user,setUser] = useState({})
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [user, setUser] = useState({})
     useEffect(() => {
         async function fetchData() {
             const response = await AuthService.getInfoUser()
             const data = response?.data.data;
-            if(data){
+            if (data.roles.includes("ROLE_ADMIN") && data) {
                 setUser(data)
+                setIsAdmin(true)
                 setIsUser(true)
             }
-            else{
+            else if(data.roles.includes("ROLE_USER") && data){
+                setUser(data)
+                setIsAdmin(false)
+                setIsUser(true)
+            }else {
                 setIsUser(false)
+                setIsAdmin(false)
             }
         }
 
@@ -75,14 +82,18 @@ function TopNavbar(props) {
                             alignItems="center"
                         >
                             <div className={cx("navbar-left")}>
-                                <Link
+                                {
+                                    isAdmin  && (
+                                    <Link
                                     to={""}
                                     className={cx("navbar-item", "navbar-separate")}
-                                >
-                                    Kênh nguời bán
-                                </Link>
+                                    >
+                                    Quản lý sản phẩm
+                                    </Link>
+                                    )
+                                }
                                 <a className={cx("navbar-item", "navbar-separate")} href="">
-                                    Trở thành người bán Shopee
+                                    Trở thành người bán Tiki
                                 </a>
                                 <a className={cx("navbar-item", "navbar-separate")} href="">
                                     Tải ứng dụng
