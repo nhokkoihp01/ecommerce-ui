@@ -23,6 +23,9 @@
 .filter-price{
   padding-right: 12px;
   padding-left: 12px;
+  &:first-child{
+    width: 180px;
+  }
 }
 .notify{
   padding-left: 12px;

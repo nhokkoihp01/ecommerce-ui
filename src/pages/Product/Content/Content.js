@@ -4,10 +4,10 @@ import {Grid, Slider} from "@material-ui/core";
 
 
 import styles from "./Content.module.scss";
-
 import ProductItem from "~/layouts/components/ProductItem";
-import {getProductByCategoryId, getProductBySearch} from "~/services/workspaces.sevices";
+import {getProductByCategoryId, getProductByFilterPrice, getProductBySearch} from "~/services/workspaces.sevices";
 import {useParams} from "react-router-dom";
+import {convertCurrency} from "~/untils/convertCurrency";
 
 const cx = classNames.bind(styles);
 function Content(props) {
@@ -16,6 +16,10 @@ function Content(props) {
     const handlePriceRangeChange = (event, newValue) => {
         setPriceRange(newValue);
     };
+    useEffect(()=>{
+        getProductByFilterPrice(priceRange[0],priceRange[1]).then((res)=> setProducts(res?.data))
+
+    },[priceRange])
     const [products,setProducts] = useState([])
     useEffect(()=>{
         async function fetchData() {
@@ -50,7 +54,7 @@ function Content(props) {
             <div className={cx('filter')}>
                 <h3 className={cx("filter-header")}>Sắp xếp theo </h3>
                 <div className={cx("filter-price")}>
-                    <p>Giá từ: {priceRange[0]}</p>
+                    <p>Giá từ: {convertCurrency(priceRange[0])}</p>
                 </div>
 
                 <div className={cx("range-price")}>
@@ -65,15 +69,15 @@ function Content(props) {
                     />
                 </div>
                 <div className={cx("filter-price")}>
-                    <p>đến: {priceRange[1]}</p>
+                    <p>đến: {convertCurrency(priceRange[1])}</p>
                 </div>
             </div>
             <div className={cx('box-product')}>
                 <Grid container spacing={2}>
 
                     {
-                       products.length > 0 ? (
-                           products.map((item,index)=>{
+                       products?.length > 0 ? (
+                           products?.map((item,index)=>{
                                return (
                                    <Grid key={item.id} item md={3} sm={6} >
                                        <ProductItem data={item}/>
