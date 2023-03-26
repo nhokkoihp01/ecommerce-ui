@@ -6,12 +6,12 @@ import {Grid, Slider} from "@material-ui/core";
 import styles from "./Content.module.scss";
 
 import ProductItem from "~/layouts/components/ProductItem";
-import {getProductByCategoryId} from "~/services/workspaces.sevices";
+import {getProductByCategoryId, getProductBySearch} from "~/services/workspaces.sevices";
 import {useParams} from "react-router-dom";
 
 const cx = classNames.bind(styles);
 function Content(props) {
-    const {id} = useParams()
+    const {id,searchValue} = useParams()
     const [priceRange, setPriceRange] = useState([0, 0]);
     const handlePriceRangeChange = (event, newValue) => {
         setPriceRange(newValue);
@@ -19,18 +19,32 @@ function Content(props) {
     const [products,setProducts] = useState([])
     useEffect(()=>{
         async function fetchData() {
-            const response = await getProductByCategoryId(id);
-            const data = response?.data;
-            if (data) {
-                setProducts(data)
+            if(id !== "search"){
+                const response = await getProductByCategoryId(id);
+                const data = response?.data;
+                if (data) {
+                    setProducts(data)
+                }
+                else{
+                    setProducts([])
+                }
             }
             else{
-                setProducts([])
+                const response = await getProductBySearch(searchValue)
+                const data = response?.data;
+                if (data) {
+                    setProducts(data)
+                }
+                else{
+                    setProducts([])
+                }
             }
+
         }
 
         fetchData();
-    },[id])
+    },[id,searchValue])
+    console.log(products)
     return (
         <div className={cx('wrapper')}>
             <div className={cx('filter')}>
@@ -61,7 +75,7 @@ function Content(props) {
                        products.length > 0 ? (
                            products.map((item,index)=>{
                                return (
-                                   <Grid key={item.id} item md={3} >
+                                   <Grid key={item.id} item md={3} sm={6} >
                                        <ProductItem data={item}/>
                                    </Grid>
                                )

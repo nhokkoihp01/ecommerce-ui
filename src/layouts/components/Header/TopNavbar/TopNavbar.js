@@ -32,19 +32,22 @@ function TopNavbar(props) {
         async function fetchData() {
             const response = await AuthService.getInfoUser()
             const data = response?.data.data;
-            if (data.roles.includes("ROLE_ADMIN") && data) {
-                setUser(data)
-                setIsAdmin(true)
-                setIsUser(true)
+            if(data !== undefined){
+                if (data.roles.includes("ROLE_ADMIN") && data) {
+                    setUser(data)
+                    setIsAdmin(true)
+                    setIsUser(true)
+                }
+                else if(data.roles.includes("ROLE_USER") && data){
+                    setUser(data)
+                    setIsAdmin(false)
+                    setIsUser(true)
+                }else {
+                    setIsUser(false)
+                    setIsAdmin(false)
+                }
             }
-            else if(data.roles.includes("ROLE_USER") && data){
-                setUser(data)
-                setIsAdmin(false)
-                setIsUser(true)
-            }else {
-                setIsUser(false)
-                setIsAdmin(false)
-            }
+
         }
 
         fetchData()
