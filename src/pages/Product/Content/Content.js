@@ -8,11 +8,22 @@ import ProductItem from "~/layouts/components/ProductItem";
 import {getProductByCategoryId, getProductByFilterPrice, getProductBySearch} from "~/services/workspaces.sevices";
 import {useParams} from "react-router-dom";
 import {convertCurrency} from "~/untils/convertCurrency";
+import {ArrowLeft, ArrowRight} from "~/components/Icon";
+import {Pagination, PaginationItem} from "@mui/material";
 
 const cx = classNames.bind(styles);
 function Content(props) {
     const {id,searchValue} = useParams()
+    const [products,setProducts] = useState([])
     const [priceRange, setPriceRange] = useState([0, 0]);
+    const [page, setPage] = useState(1);
+    const [rowsPerPage] = useState(10);
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+    const startIndex = (page - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+    const currentProducts = products?.slice(startIndex, endIndex);
     const handlePriceRangeChange = (event, newValue) => {
         setPriceRange(newValue);
     };
@@ -20,7 +31,6 @@ function Content(props) {
         getProductByFilterPrice(priceRange[0],priceRange[1]).then((res)=> setProducts(res?.data))
 
     },[priceRange])
-    const [products,setProducts] = useState([])
     useEffect(()=>{
         async function fetchData() {
             if(id !== "search"){
@@ -77,7 +87,7 @@ function Content(props) {
 
                     {
                        products?.length > 0 ? (
-                           products?.map((item,index)=>{
+                           currentProducts?.map((item,index)=>{
                                return (
                                    <Grid key={item.id} item md={3} sm={6} >
                                        <ProductItem data={item}/>
@@ -95,6 +105,23 @@ function Content(props) {
                        )
                     }
 
+                </Grid>
+                <Grid item md={12} style={{ paddingTop: "40px" }}>
+                    <Pagination
+                        count={Math.ceil(products?.length / rowsPerPage)}
+                        page={page}
+                        onChange={handleChangePage}
+                        color="primary"
+                        renderItem={(item) => (
+                            <PaginationItem
+                                slots={{
+                                    previous: ArrowLeft,
+                                    next: ArrowRight,
+                                }}
+                                {...item}
+                            />
+                        )}
+                    />
                 </Grid>
 
             </div>
