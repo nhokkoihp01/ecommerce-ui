@@ -23,6 +23,10 @@ export const getProductBySearch = async (search) => {
     const result = await instance.get(`/products?search=${search}`)
     return result.data;
 };
+export const getProductByFilterPrice = async (minPrice,maxPrice) => {
+    const result = await instance.get(`/products/filter/price?minPrice=${minPrice}&maxPrice=${maxPrice}`)
+    return result.data;
+};
 
 
 
