@@ -15,7 +15,7 @@ function CategoryItem(props) {
             {data?.map((item, index) => {
                 return (
                     <Link
-                        to={`/product-category/${item.id}`}
+                        to={`/product-category/${item.id}/${item.name}`}
                         onClick={() => getData(item)}
                         key={item.id}
                         className={cx({

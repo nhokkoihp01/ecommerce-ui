@@ -15,24 +15,15 @@ export const getProductByCategoryId = async (categoryId) => {
     const result = await instance.get(`/products/category/${categoryId}`)
     return result.data;
 };
-// export const getProductDetailById = async (id) => {
-//   return await instance.get(`/product/1.0.0/product/${id}/detail`);
-// };
-// export const getShopById = async (id) => {
-//   return await instance.get(`/user/1.0.0/shop/shop/${id}`);
-// };
-// export const getIndustrials = async () => {
-//   return await instance.get(`/product/1.0.0/product/industrials`);
-// };
-// export const getProductFilter = async (body) => {
-//   return await instance.post("/product/1.0.0/product/filter", body);
-// };
-// export const loginService = async (username,password) =>{
-//   await  instance.post("/auth/login",{username,password})
-//       .then((res)=>{
-//         return res.data
-//       })
-//       .catch((e)=> e.response?.data)
-// }
+export const getProductBySearchAndMaxResult = async (search,maxResult) => {
+    const result = await instance.get(`/products?search=${search}&maxResult=${maxResult}`)
+    return result.data;
+};
+export const getProductBySearch = async (search) => {
+    const result = await instance.get(`/products?search=${search}`)
+    return result.data;
+};
+
+
 
 
