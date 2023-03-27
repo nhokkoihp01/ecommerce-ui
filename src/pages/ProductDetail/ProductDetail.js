@@ -69,7 +69,7 @@ function ProductDetail(props) {
 
 
         }
-        const response = await addToCartByUserIdAndProductId(user.id, body)
+        const response = await addToCartByUserIdAndProductId(user?.id, body)
         if (response.data.status === "OK") {
             NotificationManager.success('Thêm sản phẩm thành công')
             setCarts([...carts,body])
