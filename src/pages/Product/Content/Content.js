@@ -58,7 +58,6 @@ function Content(props) {
 
         fetchData();
     },[id,searchValue])
-    console.log(products)
     return (
         <div className={cx('wrapper')}>
             <div className={cx('filter')}>

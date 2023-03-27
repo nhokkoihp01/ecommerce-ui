@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import classNames from "classnames/bind";
 import Tippy from '@tippyjs/react/headless';
 import {Link, useNavigate} from "react-router-dom";
@@ -8,15 +8,18 @@ import styles from "./UserDropdown.module.scss";
 import avatar from "~/assets/avatar/avatar.jpg";
 import AuthService from "~/services/auth/AuthService";
 import config from "~/config";
+import {CartContext} from "~/untils/CartProvider";
 
 const cx = classNames.bind(styles);
 
 function UserDropdown(props) {
     const navigate = useNavigate()
     const {user} = props;
+    const {setShouldUpdate} = useContext(CartContext);
     const handleLogout = () => {
         AuthService.logout();
         navigate(config.routes.login)
+        setShouldUpdate(false)
     }
 
     return (

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {Button, Container, Grid} from "@mui/material";
 import validator from 'validator';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import {useNavigate} from "react-router-dom";
 
@@ -128,7 +128,6 @@ function Register(props) {
     }
     return (
         <div className={cx('wrapper')}>
-            <NotificationContainer />
             <Container>
                 <Grid container justifyContent={"center"}>
                     <Grid item container md={4}>

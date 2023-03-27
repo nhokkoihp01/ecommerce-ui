@@ -1,37 +1,42 @@
-.wrapper{
+.wrapper {
   width: 100%;
 }
-.cart{
+
+.cart {
   width: 100%;
   cursor: pointer;
   padding: 0 8px;
   flex: 1;
 }
-.cart-icon{
+
+.cart-icon {
   width: 30px;
   height: 30px;
   object-fit: cover;
   color: var(--primary-color);
 }
-.box{
+
+.box {
   padding: 12px;
-  border-radius:4px;
+  border-radius: 4px;
   @media only screen and (max-width: 600px) {
     display: none;
   }
 }
+
 .box-cart {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 20px 0;
+  //padding: 20px 0;
   border-radius: 4px;
-  width: calc(400px - 32px);
+  //width: calc(400px - 32px);
   background-color: var(--while-color);
   box-shadow: rgb(0 0 0 /12%) 0 2px 12px;
   z-index: 999;
-  &::after{
+
+  &::after {
     content: "";
     border-style: solid;
     border-width: 0 10px 10px;
@@ -44,48 +49,56 @@
       right: 14%;
     }
     @media only screen and (min-width: 600px) {
-      right: 20% ;
+      right: 20%;
     }
 
   }
 
 }
+
 .cart-image {
   width: 100px;
   height: 100px;
 }
-.cart-notify{
+
+.cart-notify {
   padding-top: 12px;
   font-size: 1.4rem;
   font-weight: 400;
 }
-.box-cart-item{
+
+.box-cart-item {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   border-radius: 4px;
-  padding: 0 14px;
+  //padding: 0 14px;
   width: calc(400px - 32px);
   background-color: var(--while-color);
-  z-index: 999;
 
 }
-.title{
+
+.title {
   font-size: 1.4rem;
   color: #929292;
   font-weight: 400;
+  padding: 0 6px;
 }
-.cart-item{
+
+.cart-item {
   display: flex;
+  padding: 4px 6px;
   align-items: center;
   justify-content: flex-start;
 }
-.product-info{
+
+.product-info {
   display: flex;
   align-items: center;
   margin-left: 6px;
 }
-.product-name{
+
+.product-name {
   flex: 1;
   font-size: 1.4rem;
   color: var(--text-color);
@@ -97,17 +110,20 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.product-price{
+
+.product-price {
   font-size: 1.4rem;
   color: var(--primary-color);
 }
-.checkout{
+
+.checkout {
   width: 100%;
   display: flex;
-  padding-top: 12px;
+  padding: 12px 6px;
   justify-content: flex-end;
 }
-.btn-checkout{
+
+.btn-checkout {
   max-width: 150px;
   width: 100%;
   text-transform: capitalize;
@@ -121,7 +137,8 @@
   padding: 6px 8px;
   cursor: pointer;
   opacity: 1;
-  &:hover{
+
+  &:hover {
     opacity: 0.7;
   }
 }
