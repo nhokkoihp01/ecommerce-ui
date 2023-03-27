@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {NotificationContainer} from "react-notifications";
 
 import {publicRoutes} from "~/routes";
 import DefaultLayout from "~/layouts/DefaultLayout";
@@ -8,6 +9,7 @@ function App() {
   return (
       <Router>
           <div className="App">
+              <NotificationContainer />
               <Routes>
                   {publicRoutes.map((route, index) => {
                       const Page = route.component;

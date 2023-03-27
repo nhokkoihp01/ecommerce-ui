@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {Button, Container, Grid} from "@mui/material";
-import {useNavigate} from "react-router-dom";
 import validator from 'validator';
 
 import styles from "./Login.module.scss";
 import AuthService from "~/services/auth/AuthService";
-import config from "~/config";
+import {CartContext} from "~/untils/CartProvider";
 
 
 const cx = classNames.bind(styles);
@@ -15,7 +14,7 @@ function Login(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("")
-    const navigate = useNavigate();
+    const {setShouldUpdate} = useContext(CartContext);
     const handleChangeUsername = (e) => {
         setUsername(e.target.value)
     }
@@ -23,13 +22,13 @@ function Login(props) {
         setPassword(e.target.value)
     }
     useEffect(() => {
-        if (username.length > 0 ) {
+        if (username.length > 0) {
             setError('')
         }
 
     }, [username])
     useEffect(() => {
-        if (password.length > 0 ) {
+        if (password.length > 0) {
             setError('')
         }
 
@@ -40,7 +39,8 @@ function Login(props) {
         } else {
             const response = await AuthService.login(username, password);
             if (response?.data.accessToken) {
-                navigate(config.routes.home)
+                setShouldUpdate(true);
+                window.history.back()
             }
 
             if (response?.data.status === "UNAUTHORIZED") {
@@ -57,7 +57,6 @@ function Login(props) {
             handleLogin()
         }
     }
-
 
 
     return (

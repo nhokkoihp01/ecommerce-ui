@@ -1,18 +1,27 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {Container, Grid} from "@material-ui/core";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {NotificationManager} from 'react-notifications';
 
 import styles from "./ProductDetail.module.scss";
-import {getProductById} from "~/services/workspaces.sevices";
+import {addToCartByUserIdAndProductId, getProductById} from "~/services/workspaces.sevices";
 import {convertCurrency} from "~/untils/convertCurrency";
+import AuthService from "~/services/auth/AuthService";
+import config from "~/config";
+import {CartContext} from "~/untils/CartProvider";
+
+
 
 const cx = classNames.bind(styles);
 
 function ProductDetail(props) {
     let {id} = useParams();
-    const [product,setProduct] = useState({})
+    const {carts, setCarts} = useContext(CartContext);
+    const [product, setProduct] = useState({})
     const [count, setCount] = useState(1);
+    const [user, setUser] = useState({});
+    const navigate = useNavigate()
     const incrementCount = () => {
         setCount(count + 1);
     };
@@ -32,6 +41,48 @@ function ProductDetail(props) {
 
         fetchData();
     }, [id]);
+    useEffect(() => {
+        async function getInfoUser() {
+            const response = await AuthService.getInfoUser()
+            const data = response?.data.data;
+            setUser(data)
+        }
+
+        getInfoUser()
+
+    }, [])
+
+    const handleAddToCart = async () => {
+        if (user === undefined) {
+            navigate(config.routes.login)
+        }
+        const body = {
+            productId: product.id,
+            quantity: count,
+            name: product.name,
+            image: product.image,
+            newPrice: product.newPrice,
+            oldPrice: product.oldPrice,
+            description: product.description,
+            sale: product.sale,
+            categoryId: product.categoryId
+
+
+        }
+        const response = await addToCartByUserIdAndProductId(user.id, body)
+        if (response.data.status === "OK") {
+            NotificationManager.success('Thêm sản phẩm thành công')
+            setCarts([...carts,body])
+
+        } else {
+            console.log("failed")
+        }
+
+
+    }
+
+
+    // console.log(addToCart)
 
     return (
         <div className={cx('wrapper')}>
@@ -62,7 +113,8 @@ function ProductDetail(props) {
                                     <span className={cx("count")}>{count}</span>
                                     <span onClick={incrementCount} className={cx("btn-function")}>+</span>
                                 </div>
-                                <button className={cx('btn-add-cart')}>Thêm vào giỏ hàng</button>
+                                <button onClick={handleAddToCart} className={cx('btn-add-cart')}>Thêm vào giỏ hàng
+                                </button>
                             </div>
                         </Grid>
 
