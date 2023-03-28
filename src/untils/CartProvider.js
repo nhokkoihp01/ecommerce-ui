@@ -10,6 +10,7 @@ export const CartContext = createContext([]);
 function CartProvider(props) {
     const [carts, setCarts] = useState([]);
     const [shouldUpdate, setShouldUpdate] = useState(false);
+    const [totalPrice,setTotalPrice] = useState()
 
     async function getAllCartByUser() {
         const user = JSON.parse(localStorage.getItem("token"))
@@ -18,7 +19,9 @@ function CartProvider(props) {
             const data = response?.data.data;
             if (data) {
                 const carts = await getAllCartsByUserId(data.id)
+                setTotalPrice(carts.data[0].totalPrice)
                 if (carts.data !== null) {
+
                     setCarts(carts?.data[0].cartItems)
                 } else {
                     setCarts([])
@@ -33,7 +36,7 @@ function CartProvider(props) {
 
 
     return (
-        <CartContext.Provider value={{carts, setCarts, setShouldUpdate}}>
+        <CartContext.Provider value={{carts, setCarts,totalPrice, setShouldUpdate}}>
             {props.children}
         </CartContext.Provider>
     );

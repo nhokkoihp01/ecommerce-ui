@@ -84,6 +84,17 @@ body span.MuiBadge-badge.MuiBadge-standard.MuiBadge-anchorOriginTopRight.MuiBadg
     font-size: 1.6rem;
     color:var(--primary-color);
 }
+h2.MuiTypography-root.MuiTypography-h6 {
+    font-size: 2rem !important;
+}
+
+p.MuiTypography-root.MuiDialogContentText-root.MuiTypography-body1.MuiTypography-colorTextSecondary {
+    font-size: 1.8rem !important;
+}
+
+input#name {
+    font-size: 1.6rem !important;
+}
 /*customer react-slick*/
 body.slick-slide.slick-active.slick-center.slick-current div {
     display: flex !important;
