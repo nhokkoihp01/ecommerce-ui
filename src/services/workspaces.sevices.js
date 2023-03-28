@@ -37,6 +37,10 @@ export const getAllCartsByUserId = async (userId) => {
     return result.data
 
 };
+export const removeItemFromCart = async (userId,productId) => {
+    return await instance.delete(`/cart/remove/${userId}/items/${productId}`,{headers: authHeader()})
+
+};
 
 
 

@@ -29,3 +29,11 @@ export const useTableStyles = makeStyles({
         backgroundColor: 'white'
     }
 });
+export const useDialogStyles = makeStyles((theme) => ({
+    dialogTitle: {
+        fontSize: '18px',
+    },
+    dialogContext:{
+        fontSize:"18px"
+    }
+}));
