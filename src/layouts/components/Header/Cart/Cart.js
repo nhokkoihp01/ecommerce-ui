@@ -1,13 +1,16 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import classNames from "classnames/bind";
 import {Avatar, Badge, withStyles} from "@material-ui/core";
 import Tippy from "@tippyjs/react/headless";
+import {Link} from "react-router-dom";
 
 import styles from './Cart.module.scss'
 import {BiCart} from "react-icons/bi";
 import {convertCurrency} from "~/untils/convertCurrency";
 import Notify from "~/assets/notify/notify-empty.png";
 import {CartContext} from "~/untils/CartProvider";
+import config from "~/config";
+
 
 
 const cx = classNames.bind(styles);
@@ -70,7 +73,7 @@ function Cart(props) {
                             {
                                 carts.length > 0 && (
                                     <div className={cx("checkout")}>
-                                        <a className={cx("btn-checkout")}>Xem giỏ hàng</a>
+                                        <Link to={config.routes.checkout} className={cx("btn-checkout")}>Xem giỏ hàng</Link>
                                     </div>
                                 )
                             }

@@ -128,14 +128,14 @@ function ManageProduct(props) {
                             Product Ao
                         </div>
                         <div className={cx('cell')} >
-                            <div className={cx('btn-option')}>
-                                <div className={cx('btn-edit')}>
-                                    <FiEdit2/>
+                                <div className={cx('btn-option')}>
+                                    <div className={cx('btn-edit')}>
+                                        <FiEdit2/>
+                                    </div>
+                                    <div className={cx('btn-remove')}>
+                                        <BsTrash/>
+                                    </div>
                                 </div>
-                                <div className={cx('btn-remove')}>
-                                    <BsTrash/>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
