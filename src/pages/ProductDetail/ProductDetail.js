@@ -17,7 +17,7 @@ const cx = classNames.bind(styles);
 
 function ProductDetail(props) {
     let {id} = useParams();
-    const {carts, setCarts} = useContext(CartContext);
+    const {setShouldUpdate} = useContext(CartContext);
     const [product, setProduct] = useState({})
     const [count, setCount] = useState(1);
     const [user, setUser] = useState({});
@@ -72,7 +72,7 @@ function ProductDetail(props) {
         const response = await addToCartByUserIdAndProductId(user?.id, body)
         if (response.data.status === "OK") {
             NotificationManager.success('Thêm sản phẩm thành công')
-            setCarts([...carts,body])
+            setShouldUpdate(prev => !prev);
 
         } else {
             console.log("failed")
