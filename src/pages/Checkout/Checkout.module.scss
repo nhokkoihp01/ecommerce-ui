@@ -64,9 +64,9 @@
 }
 .input-update{
   border: 1px solid #ccc;
-  padding: 4px;
+  padding: 6px 6px;
   border-radius: 4px;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 .empty-cart{
   padding-top: 40px;
@@ -75,4 +75,37 @@
 .empty-title{
   font-size: 2.4rem;
   color: #f53e2d;
+}
+.error{
+  color: #f53e2d;
+}
+.btn-cancel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #EE4D2D;
+  background-color: var(--while-color);
+  color: #EE4D2D;
+  cursor: pointer;
+  opacity: 1;
+  &:hover{
+    opacity: 0.7;
+  }
+}
+.btn-Agree{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--while-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  opacity: 1;
+  &:hover{
+    opacity: 0.7;
+  }
 }

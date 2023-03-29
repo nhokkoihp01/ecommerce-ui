@@ -41,6 +41,10 @@ export const removeItemFromCart = async (userId,productId) => {
     return await instance.delete(`/cart/remove/${userId}/items/${productId}`,{headers: authHeader()})
 
 };
+export const UpdateItemFromCart = async (userId,productId,quantity) => {
+    return await instance.put(`/cart/update/items/${productId}?userId=${userId}&quantity=${quantity}`,null,{headers: authHeader()})
+
+};
 
 
 
