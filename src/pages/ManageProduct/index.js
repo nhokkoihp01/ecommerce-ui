@@ -1,1 +1,2 @@
-export {default} from "./ManageProduct"
+export {default} from './ManageProduct'
+

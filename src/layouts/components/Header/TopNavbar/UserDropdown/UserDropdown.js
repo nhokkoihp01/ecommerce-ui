@@ -30,7 +30,7 @@ function UserDropdown(props) {
                 offset={[12, 4]}
                 render={attrs => (
                     <div className={cx('dropdown-user')} tabIndex="-1" {...attrs}>
-                        <Link to={"/"} className={cx("dropdown-item")}>
+                        <Link to={config.routes.infoUser} className={cx("dropdown-item")}>
                             Tài khoản của tôi
                         </Link>
                         <Link to={'/'} className={cx("dropdown-item")}>
