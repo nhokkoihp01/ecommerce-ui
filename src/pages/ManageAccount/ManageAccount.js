@@ -7,9 +7,9 @@ import sidebar_menu from './constants/sidebar-menu';
 
 import MainContent from "./pages/MainContent";
 import classNames from "classnames/bind";
-import styles from "./ManageProduct.module.scss";
+import styles from "./ManageAccount.module.scss";
 const cx = classNames.bind(styles);
-function ManageProduct() {
+function ManageAccount() {
     return (
 
         <div className={cx('dashboard-container')}>
@@ -21,6 +21,6 @@ function ManageProduct() {
     )
 }
 
-export default ManageProduct;
+export default ManageAccount;
 
 

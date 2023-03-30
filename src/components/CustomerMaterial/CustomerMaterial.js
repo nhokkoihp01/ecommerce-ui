@@ -7,6 +7,7 @@ export const useTableStyles = makeStyles({
     },
     tableCell: {
         fontSize: '16px',
+
     },
     imageCell: {
         maxWidth: '80px',

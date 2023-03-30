@@ -9,6 +9,12 @@ import Checkout from "~/pages/Checkout/Checkout";
 
 
 
+import Checkout from "~/pages/Checkout";
+import ManageOrder from "~/pages/ManageOrder";
+import ManageAccount from "~/pages/ManageAccount";
+import InfoUser from "~/pages/InfoUser";
+
+
 
 const publicRoutes = [
     {path: '/', component: Home},
@@ -18,7 +24,11 @@ const publicRoutes = [
     {path: config.routes.product, component: Product},
     {path: config.routes.login, component: Login, layout: null},
     {path: config.routes.register, component: Register, layout: null},
-    {path: config.routes.managerProduct, component: ManageProduct,layout: null },
+    {path: config.routes.manageProduct, component: ManageProduct, layout: null},
+    {path: config.routes.manageOrder, component: ManageOrder, layout: null},
+    {path: config.routes.manageAccount, component: ManageAccount, layout: null},
+
+    {path: config.routes.infoUser, component: InfoUser},
 
 
 ];
