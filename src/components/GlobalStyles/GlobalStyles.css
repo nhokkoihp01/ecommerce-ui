@@ -99,4 +99,9 @@ input#name {
 body.slick-slide.slick-active.slick-center.slick-current div {
     display: flex !important;
 }
+/*pro-sidebar customer*/
+span.ps-menu-label.ps-active.css-12w9als {
+    color: var(--primary-color) !important;
+}
+
 
