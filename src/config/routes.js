@@ -6,7 +6,7 @@ const routes = {
     product: "/product-category/:id/:searchValue",
     checkout:"/order/checkout",
     payment:"/order/payment",
-    managerProduct: "/manage-product",
+    manageProduct: "/manage-product",
     manageOrder: "/manage-order",
     manageAccount: "/manage-account",
     infoUser: "/info-user",
