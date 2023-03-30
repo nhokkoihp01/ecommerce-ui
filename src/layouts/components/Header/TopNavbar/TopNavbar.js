@@ -32,17 +32,16 @@ function TopNavbar(props) {
         async function fetchData() {
             const response = await AuthService.getInfoUser()
             const data = response?.data.data;
-            if(data !== undefined){
+            if (data !== undefined) {
                 if (data.roles.includes("ROLE_ADMIN") && data) {
                     setUser(data)
                     setIsAdmin(true)
                     setIsUser(true)
-                }
-                else if(data.roles.includes("ROLE_USER") && data){
+                } else if (data.roles.includes("ROLE_USER") && data) {
                     setUser(data)
                     setIsAdmin(false)
                     setIsUser(true)
-                }else {
+                } else {
                     setIsUser(false)
                     setIsAdmin(false)
                 }
@@ -86,15 +85,18 @@ function TopNavbar(props) {
                         >
                             <div className={cx("navbar-left")}>
                                 {
-                                    isAdmin  && (
-                                    <Link
-                                    to={config.routes.managerProduct}
-                                    className={cx("navbar-item", "navbar-separate")}
-                                    >
-                                    Quản lý sản phẩm
-                                    </Link>
+                                    isAdmin && (
+                                        <Link
+                                            to={config.routes.manageProduct}
+                                            className={cx("navbar-item", "navbar-separate")}
+                                        >
+                                            Quản lý sản phẩm
+                                        </Link>
                                     )
-                                }
+                                }{
+
+                            }
+
                                 <a className={cx("navbar-item", "navbar-separate")} href="">
                                     Trở thành người bán Tiki
                                 </a>

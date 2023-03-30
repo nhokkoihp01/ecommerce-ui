@@ -7,5 +7,9 @@ const routes = {
     checkout:"/order/checkout",
     payment:"/order/payment",
     managerProduct: "/manage-product",
+    manageOrder: "/manage-order",
+    manageAccount: "/manage-account",
+    infoUser: "/info-user",
+
 };
 export default routes;
