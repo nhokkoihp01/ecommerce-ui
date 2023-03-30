@@ -11,6 +11,7 @@ function CartProvider(props) {
     const [carts, setCarts] = useState([]);
     const [shouldUpdate, setShouldUpdate] = useState(false);
     const [totalPrice,setTotalPrice] = useState()
+    const [user,setUser] = useState({})
 
     async function getAllCartByUser() {
         const user = JSON.parse(localStorage.getItem("token"))
@@ -19,7 +20,7 @@ function CartProvider(props) {
             const data = response?.data.data;
             if (data) {
                 const carts = await getAllCartsByUserId(data.id)
-                setTotalPrice(carts.data[0].totalPrice)
+                setTotalPrice(carts?.data[0].totalPrice)
                 if (carts.data !== null) {
 
                     setCarts(carts?.data[0].cartItems)
@@ -29,14 +30,24 @@ function CartProvider(props) {
             }
         }
     }
+    async function getInfoUser() {
+        const user = JSON.parse(localStorage.getItem("token"))
+        if (user && user.accessToken) {
+            const response = await AuthService.getInfoUser()
+            const data = response?.data.data;
+            setUser(data)
+        }
+    }
 
     useEffect(() => {
         getAllCartByUser()
+        getInfoUser()
     }, [shouldUpdate]);
 
 
+
     return (
-        <CartContext.Provider value={{carts, setCarts,totalPrice, setShouldUpdate}}>
+        <CartContext.Provider value={{carts, setCarts,totalPrice, setShouldUpdate,user}}>
             {props.children}
         </CartContext.Provider>
     );

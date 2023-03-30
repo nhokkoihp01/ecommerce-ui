@@ -19,6 +19,7 @@ import {
 } from '@material-ui/core';
 import {Container} from "@mui/material";
 import validator from 'validator';
+import {Link} from "react-router-dom";
 
 
 import styles from "./Checkout.module.scss";
@@ -29,6 +30,7 @@ import {CartContext} from "~/untils/CartProvider";
 import {convertCurrency} from "~/untils/convertCurrency";
 import {removeItemFromCart, UpdateItemFromCart} from "~/services/workspaces.sevices";
 import {NotificationManager} from "react-notifications";
+import config from "~/config";
 
 
 const cx = classNames.bind(styles);
@@ -175,7 +177,7 @@ function Checkout(props) {
                                 </Grid>
                                 <Grid container justifyContent={"flex-end"} item md={3}>
                                     <div className={cx('payment')}>
-                                        <button className={cx('btn-payment')}>Thanh toán</button>
+                                        <Link to={config.routes.payment} className={cx('btn-payment')}>Thanh toán</Link>
                                     </div>
                                 </Grid>
                             </Grid>
