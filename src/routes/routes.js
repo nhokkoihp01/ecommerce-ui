@@ -4,12 +4,14 @@ import Login from "~/pages/Login";
 import ProductDetail from "~/pages/ProductDetail";
 import Product from "~/pages/Product";
 import Register from "~/pages/Register";
-import ManageProduct from "~/pages/ManageProduct";
 import Checkout from "~/pages/Checkout/Checkout";
 import Payment from "~/pages/Payment";
-import ManageOrder from "~/pages/ManageOrder";
-import ManageAccount from "~/pages/ManageAccount";
 import InfoUser from "~/pages/InfoUser";
+import ManageProduct from "~/admin/pages/ManageProduct/Product";
+import ManageEditProduct from "~/admin/pages/ManageProduct/EditProduct";
+import ManageAddProduct from "~/admin/pages/ManageProduct/AddProduct";
+
+
 
 
 
@@ -23,8 +25,8 @@ const publicRoutes = [
     {path: config.routes.login, component: Login, layout: null},
     {path: config.routes.register, component: Register, layout: null},
     {path: config.routes.manageProduct, component: ManageProduct, layout: null},
-    {path: config.routes.manageOrder, component: ManageOrder, layout: null},
-    {path: config.routes.manageAccount, component: ManageAccount, layout: null},
+    {path: config.routes.editProduct, component: ManageEditProduct, layout: null},
+    {path: config.routes.addProduct, component: ManageAddProduct, layout: null},
     {path: config.routes.infoUser, component: InfoUser},
 
 
