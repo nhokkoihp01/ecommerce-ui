@@ -1,0 +1,52 @@
+.upload__image-wrapper{
+  display: flex;
+}
+.box-label{
+  padding-top: 20px;
+}
+.box-input{
+  width: 100%;
+  padding-top: 20px;
+}
+.label{
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding-right: 20px;
+  @media only screen and (max-width: 768px) {
+    padding-bottom: 12px;
+
+  }
+}
+.btn-upload{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  line-height: 20px;
+  padding: 4px 6px;
+  cursor: pointer;
+  border: 0;
+  background-color: #2673dd;
+  color: var(--while-color);
+  border-radius: 4px;
+  position: relative;
+}
+.image-item{
+  padding-left: 20px;
+}
+.btn-update{
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  padding: 4px 4px;
+  border: none;
+  color: var(--while-color);
+  border-radius: 4px;
+  background-color: #29335c;
+}
+.image-product{
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--primary-color);
+
+}
