@@ -20,9 +20,8 @@ function CartProvider(props) {
             const data = response?.data.data;
             if (data) {
                 const carts = await getAllCartsByUserId(data.id)
-                setTotalPrice(carts?.data[0].totalPrice)
-                if (carts.data !== null) {
-
+                if (carts?.data !== null) {
+                    setTotalPrice(carts?.data[0].totalPrice)
                     setCarts(carts?.data[0].cartItems)
                 } else {
                     setCarts([])
