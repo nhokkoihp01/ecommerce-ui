@@ -1,23 +1,27 @@
-.wrapper{
+.wrapper {
   display: flex;
   width: 800px;
   margin: 0 auto 100px;
   background: #14AAFF;
 }
-.left-info{
+
+.left-info {
   width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.left-info img{
+
+.left-info img {
 
 }
-.content-info{
+
+.content-info {
   width: 70%;
 
 }
-.form-add{
+
+.form-add {
   width: 100%;
 
   background: #F5F5F5;
@@ -25,34 +29,41 @@
   flex-direction: column;
   padding: 10px;
 }
-.input-box{
-  display:  flex;
+
+.input-box {
+  display: flex;
   justify-content: space-between;
 }
-.input-box-item{
+
+.input-box-item {
   border: 1px solid #14AAFF;
   border-radius: 5px;
   width: 48%;
   padding: 15px 10px;
   margin: 5px 0;
 }
-.input-item{
+
+.input-item {
   border: 1px solid #14AAFF;
   border-radius: 5px;
   width: 100%;
   padding: 15px 10px;
   margin: 35px 0;
 }
-.btn-submit{
-    background: #ffffff;
-  color: #14AAFF;
-  border: 1px solid #14AAFF;
-  min-width: 100px;
-  max-width: fit-content;
-  margin: 20px auto 0;
 
-}
-.btn-submit:hover{
-  background: #14AAFF;
-  color: #ffffff;
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border: 1px solid #14AAFF;
+  padding: 8px 10px;
+  border-radius: 4px;
+  color: var(--while-color);
+  opacity: 1;
+  &:hover{
+    opacity: 0.7;
+  }
+
 }
