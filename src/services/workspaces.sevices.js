@@ -45,6 +45,11 @@ export const UpdateItemFromCart = async (userId,productId,quantity) => {
     return await instance.put(`/cart/update/items/${productId}?userId=${userId}&quantity=${quantity}`,null,{headers: authHeader()})
 
 };
+export const createOrder = async (userId,body) => {
+    return await instance.post(`/order/payment?userId=${userId}`,body,{headers: authHeader()})
+
+};
+
 
 
 

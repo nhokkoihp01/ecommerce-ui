@@ -112,7 +112,7 @@ function Register(props) {
             console.log(response)
             validate(response)
             if (response?.data.accessToken) {
-                NotificationManager.success('Đăng ký thành công', 'Sau 3s chuyển tới trang đăng nhập', 5000,()=>{
+                NotificationManager.success('Đăng ký thành công', 'Sau 5s chuyển tới trang đăng nhập', 5000,()=>{
                     navigate(config.routes.login)
                 });
                 setTimeout(()=>{

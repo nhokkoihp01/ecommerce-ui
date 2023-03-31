@@ -5,7 +5,7 @@ import ProductDetail from "~/pages/ProductDetail";
 import Product from "~/pages/Product";
 import Register from "~/pages/Register";
 import Checkout from "~/pages/Checkout/Checkout";
-import Payment from "~/pages/Payment";
+import Order from "~/pages/Order";
 import InfoUser from "~/pages/InfoUser";
 import ManageProduct from "~/admin/pages/ManageProduct/Product";
 import ManageEditProduct from "~/admin/pages/ManageProduct/EditProduct";
@@ -21,7 +21,7 @@ const publicRoutes = [
     {path: config.routes.productDetail, component: ProductDetail},
     {path: config.routes.checkout, component: Checkout},
     {path: config.routes.product, component: Product},
-    {path: config.routes.payment, component: Payment},
+    {path: config.routes.payment, component: Order},
     {path: config.routes.login, component: Login, layout: null},
     {path: config.routes.register, component: Register, layout: null},
     {path: config.routes.manageProduct, component: ManageProduct, layout: null},
