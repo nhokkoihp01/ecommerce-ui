@@ -119,6 +119,7 @@ function InfoUser() {
                                     <input className={cx('input-box-item')}
                                            value={firstName}
                                            defaultValue={firstName}
+                                           onChange={handleChangeFirstname}
                                            readOnly
                                            type="text"
                                            placeholder="First Name"/>
