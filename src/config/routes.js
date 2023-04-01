@@ -7,7 +7,7 @@ const routes = {
     checkout:"/order/checkout",
     payment:"/order/payment",
     manageProduct: "/manage-product",
-    editProduct:"/manage-product/edit",
+    editProduct:"/manage-product/edit/:id",
     addProduct:"/manage-product/add",
     manageOrder: "/manage-order",
     manageAccount: "/manage-account",
