@@ -1,15 +1,16 @@
 import React from 'react';
 import classNames from "classnames/bind";
-import {Sidebar, Menu, MenuItem, SubMenu, menuClasses} from 'react-pro-sidebar';
+import {Sidebar, Menu, MenuItem, SubMenu} from 'react-pro-sidebar';
 import {Link} from "react-router-dom";
+import {useMediaQuery} from "react-responsive";
 
 
 import styles from "./ManageLayout.module.scss";
-import {useMediaQuery} from "react-responsive";
 import {MdOutlineEmojiTransportation} from "react-icons/md";
 import {FaHeart} from "react-icons/fa";
 import config from "~/config";
-import Header from "~/admin/components/Header";
+import Header from "~/admin/components/Header/Header";
+
 
 const cx = classNames.bind(styles);
 
