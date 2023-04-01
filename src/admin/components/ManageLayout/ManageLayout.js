@@ -9,6 +9,7 @@ import {useMediaQuery} from "react-responsive";
 import {MdOutlineEmojiTransportation} from "react-icons/md";
 import {FaHeart} from "react-icons/fa";
 import config from "~/config";
+import Header from "~/admin/components/Header";
 
 const cx = classNames.bind(styles);
 
@@ -21,8 +22,8 @@ function ManageLayout({children}) {
             icon: <MdOutlineEmojiTransportation/>,
             items: [
                 {
-                    name: 'Sửa sản phẩm',
-                    to: config.routes.editProduct
+                    name: 'Tất cả sản phẩm',
+                    to: config.routes.manageProduct
                 },
                 {
                     name: 'Thêm sản phẩm',
@@ -50,8 +51,9 @@ function ManageLayout({children}) {
 
     return (
         <div className={cx('wrapper')}>
+            <Header/>
             <div style={{display: 'flex', height: '100%', minHeight: '400px'}}>
-                <Sidebar defaultCollapsed={isTablet} collapsedWidth="60px">
+                <Sidebar defaultCollapsed={isTablet} collapsedWidth="50px">
                     <Menu
                         rootStyles={{
                             backgroundColor: '#e1e1e1',
@@ -72,7 +74,7 @@ function ManageLayout({children}) {
                             categories.map((category, index) => {
                                 return (
                                     <SubMenu label={category.label}
-                                             defaultOpen
+                                             defaultOpen={!isTablet}
                                              key={category.id}
                                              icon={category.icon}>
 
@@ -95,7 +97,7 @@ function ManageLayout({children}) {
 
                     </Menu>
                 </Sidebar>
-                <main style={{padding: 10}}>{children}</main>
+                <main style={{padding: 10,width:"100%"}}>{children}</main>
             </div>
         </div>
     );

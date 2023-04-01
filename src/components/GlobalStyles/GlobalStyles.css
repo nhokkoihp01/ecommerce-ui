@@ -67,6 +67,15 @@ html *::-webkit-scrollbar-track {
 body input.MuiInputBase-input {
     font-size: 1.6rem !important;
 }
+body .MuiSvgIcon-root{
+    font-size: 2rem !important;
+}
+body .MuiSelect-root.MuiSelect-select.MuiTablePagination-select.MuiSelect-selectMenu.MuiInputBase-input{
+    font-size: 1.6rem !important;
+}
+body .MuiTypography-root.MuiTablePagination-caption.MuiTypography-body2.MuiTypography-colorInherit{
+    font-size: 1.6rem !important;
+}
 body
 button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-textPrimary.Mui-selected.MuiPaginationItem-page.css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root {
     font-size: 1.8rem;
