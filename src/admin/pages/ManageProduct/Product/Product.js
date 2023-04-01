@@ -106,9 +106,7 @@ function Product(props) {
                                                 <TableCell className={classes.tableCell}>
                                                     <div className={cx('function')}>
                                                             <LightTooltip title="remove">
-                                                                <IconButton color='edit'
-                                                                            className={classes.iconButton}
-                                                                            size="large"
+                                                                <IconButton className={classes.iconButton}
                                                                             aria-label="remove"
                                                                 >
                                                                     <BsTrash  className={cx('icon-remove')}/>
@@ -117,9 +115,7 @@ function Product(props) {
                                                             </LightTooltip>
                                                         <Link to={`/manage-product/edit/${item.id}`}>
                                                             <LightTooltip title="Edit">
-                                                                <IconButton color='edit'
-                                                                            className={classes.iconButton}
-                                                                            size="large"
+                                                                <IconButton className={classes.iconButton}
                                                                             aria-label="edit"
                                                                 >
                                                                     <FiEdit2  className={cx('icon-edit')}/>
