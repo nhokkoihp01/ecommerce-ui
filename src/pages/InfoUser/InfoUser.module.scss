@@ -33,6 +33,7 @@
 .input-box {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .input-box-item {
@@ -41,14 +42,17 @@
   width: 48%;
   padding: 15px 10px;
   margin: 5px 0;
+
+  height: 50px;
 }
+
 
 .input-item {
   border: 1px solid #14AAFF;
   border-radius: 5px;
   width: 100%;
   padding: 15px 10px;
-  margin: 35px 0;
+  margin: 10px 0;
 }
 
 .btn-submit {
@@ -61,9 +65,28 @@
   padding: 8px 10px;
   border-radius: 4px;
   color: var(--while-color);
+  margin-top: 20px;
+  margin-bottom: 10px;
   opacity: 1;
   &:hover{
     opacity: 0.7;
   }
+
+}
+.input-item-error{
+  width: 48%;
+  border: 1px solid #14AAFF;
+  border-radius: 5px;
+
+  padding: 15px 10px;
+  margin: 10px 0;
+
+}
+.error-text{
+  color: #EE4D2D;
+  font-size: 14px;
+}
+input:focus{
+  outline: none;
 
 }

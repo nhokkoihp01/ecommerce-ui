@@ -56,7 +56,7 @@ function InfoUser() {
     const handleUpdate = async () => {
         if (validator.isEmpty(password, {min: 6, max: 30}) || validator.isEmpty(firstName)
             || validator.isEmpty(lastName) || validator.isEmpty(numberPhone)) {
-            setErrorPassword("Mật khẩu phaỉ từ 6 đến 30 kí tự")
+            setErrorPassword("Mật khẩu phải từ 6 đến 30 kí tự")
             setErrorFirstName("Họ và tên đệm không được để trống")
             setErrorLastName("Tên không được để trống")
             setErrorNumberPhone("Số điện thoại không được để trống")
@@ -69,7 +69,7 @@ function InfoUser() {
                 image: isChangeImage ? images[0].data_url : user.image
             }
             const response = await UpdateInfoUser(user.id, body)
-            if(response?.status === 200){
+            if (response?.status === 200) {
                 NotificationManager.success('Sửa thông tin người dùng thành công')
                 await AuthService.logout()
                 navigate(config.routes.login)
@@ -102,47 +102,50 @@ function InfoUser() {
                                            value={user.username}
                                            type="text"
                                            placeholder="Username"/>
-                                    <input className={cx('input-box-item')}
-                                           type="password"
-                                           value={password}
-                                           onChange={handleChangePassword}
-                                           placeholder="Password"/>
-                                    <span>{errorPassword}</span>
+
+
                                 </div>
+                                <input className={cx('input-item-error')}
+                                       type="password"
+                                       value={password}
+                                       onChange={handleChangePassword}
+                                       placeholder="Password"/>
+                                <span className={cx('error-text')}>{errorPassword}</span>
 
                                 <input className={cx('input-item')}
                                        type="email"
                                        disabled
                                        value={user.email}
                                        placeholder="Email"/>
-                                <div className={cx('input-box')}>
-                                    <input className={cx('input-box-item')}
+
+                                    <input className={cx('input-item-error')}
                                            value={firstName}
                                            defaultValue={firstName}
                                            onChange={handleChangeFirstname}
-                                           readOnly
+
                                            type="text"
                                            placeholder="First Name"/>
-                                    <span>{errorFirstName}</span>
+                                    <span className={cx('error-text')}>{errorFirstName}</span>
 
-                                    <input className={cx('input-box-item')}
+                                    <input className={cx('input-item-error')}
                                            type="text"
+                                           // defaultValue={lastName}
+
                                            defaultValue={lastName}
-                                           readOnly
                                            value={lastName}
                                            onChange={handleChangeLastName}
                                     />
-                                    <span>{errorLastName}</span>
+                                    <span className={cx('error-text')}>{errorLastName}</span>
 
-                                </div>
+
                                 <input className={cx('input-item')}
                                        value={numberPhone}
                                        defaultValue={user.numberPhone}
-                                       readOnly
+
                                        onChange={handleChangeNumberPhone}
                                        type="text"
                                 />
-                                <span>{errorNumberPhone}</span>
+                                <span className={cx('error-text')}>{errorNumberPhone}</span>
                                 <div className={cx('function')}>
                                     <button
                                         onClick={handleUpdate}

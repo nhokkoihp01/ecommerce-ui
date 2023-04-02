@@ -1,5 +1,8 @@
 .upload__image-wrapper{
   display: flex;
+  padding: 10px;
+  flex-direction: column-reverse;
+  width: 100%;
 }
 .box-label{
   padding-top: 20px;
@@ -23,7 +26,7 @@
   justify-content: center;
   height: 20px;
   line-height: 20px;
-  padding: 4px 6px;
+  padding: 20px 5px;
   cursor: pointer;
   border: 0;
   background-color: #2673dd;
@@ -32,7 +35,7 @@
   position: relative;
 }
 .image-item{
-  padding-left: 20px;
+
 }
 .btn-update{
   width: 100%;
@@ -45,8 +48,8 @@
   background-color: #29335c;
 }
 .image-product{
-  width: 80px;
-  height: 80px;
+  width: 100%;
+
   border: 1px solid var(--primary-color);
 
 }
