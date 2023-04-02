@@ -29,10 +29,16 @@ body {
 a {
     text-decoration: none;
 }
-input{
+input,button{
     font-size: 1.6rem;
 }
  /*customer material ui*/
+body span.MuiButton-label {
+    font-size: 1.6rem;
+}
+body .MuiFormHelperText-root{
+    font-size: 1.6rem;
+}
 .css-1oqqzyl-MuiContainer-root {
     max-width: 1600px !important;
 }
@@ -67,8 +73,15 @@ html *::-webkit-scrollbar-track {
 body input.MuiInputBase-input {
     font-size: 1.6rem !important;
 }
+
 body .MuiSvgIcon-root{
     font-size: 2rem !important;
+}
+body .Mui-focused{
+    border-color: var(--primary-color) !important;
+}
+body .MuiFormControl-root.AddProduct_input-item__0zrJz.MuiFormControl-fullWidth {
+    border: 1px solid #ccc;
 }
 body .MuiSelect-root.MuiSelect-select.MuiTablePagination-select.MuiSelect-selectMenu.MuiInputBase-input{
     font-size: 1.6rem !important;
