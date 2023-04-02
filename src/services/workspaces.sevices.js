@@ -8,6 +8,9 @@ export const getCategory = async () => {
 export const getAllProduct = async () => {
     return await instance.get("/products/all");
 };
+export const insertProduct = async (body) => {
+    return await instance.post("/products",body,{headers: authHeader()});
+};
 export const getProductById = async (id) => {
     const result = await instance.get(`/products/${id}`)
     return result.data;

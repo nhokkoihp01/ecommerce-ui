@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {
-    Grid,
     IconButton,
     Paper,
     Table,
@@ -21,8 +20,6 @@ import {BsTrash} from "react-icons/bs";
 import {FiEdit2} from "react-icons/fi";
 import {convertCurrency} from "~/untils/convertCurrency";
 import {useTableStyles} from "~/components/CustomerMaterial";
-import ProductImage from '~/assets/product/product01.jpg'
-import config from "~/config";
 import {getAllProduct} from "~/services/workspaces.sevices";
 
 
