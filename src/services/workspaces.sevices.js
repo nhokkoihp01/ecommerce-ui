@@ -14,6 +14,9 @@ export const insertProduct = async (body) => {
 export const updateProduct = async (productId,body) => {
     return await instance.put(`/products/${productId}`,body,{headers: authHeader()});
 };
+export const deleteProduct = async (productId) => {
+    return await instance.delete(`/products/${productId}`,{headers: authHeader()});
+};
 export const getProductById = async (id) => {
     const result = await instance.get(`/products/${id}`)
     return result.data;

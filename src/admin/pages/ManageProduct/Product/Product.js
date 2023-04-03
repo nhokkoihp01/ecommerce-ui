@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {
     IconButton,
@@ -20,8 +20,8 @@ import {BsTrash} from "react-icons/bs";
 import {FiEdit2} from "react-icons/fi";
 import {convertCurrency} from "~/untils/convertCurrency";
 import {useTableStyles} from "~/components/CustomerMaterial";
-import {getAllProduct} from "~/services/workspaces.sevices";
-
+import {deleteProduct, getAllProduct} from "~/services/workspaces.sevices";
+import {NotificationManager} from "react-notifications";
 
 
 const cx = classNames.bind(styles);
@@ -29,7 +29,9 @@ const cx = classNames.bind(styles);
 function Product(props) {
     const classes = useTableStyles();
     const [products, setProducts] = useState([])
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
+        setIsLoading(true);
         getAllProduct().then((res) => setProducts(res?.data.data))
     }, [])
     const [page, setPage] = useState(0);
@@ -50,6 +52,17 @@ function Product(props) {
             fontSize: 16,
         },
     }));
+    const handleRemove = async (id) => {
+        const response = await deleteProduct(id);
+        if(response?.data.status === "200"){
+            NotificationManager.success("Xoá sản phẩm thành công");
+            setIsLoading(true);
+            getAllProduct()
+                .then((res) => setProducts(res?.data.data))
+                .finally(() => setIsLoading(false));
+        }
+
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -89,7 +102,8 @@ function Product(props) {
                                 {
                                     products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => {
                                         return (
-                                            <TableRow key={item.id} className={index % 2 === 0 ? classes.oddRow : classes.evenRow}>
+                                            <TableRow key={item.id}
+                                                      className={index % 2 === 0 ? classes.oddRow : classes.evenRow}>
                                                 <TableCell
                                                     className={classes.tableCell}>{item.description}</TableCell>
                                                 <TableCell className={classes.imageCell}>
@@ -102,20 +116,21 @@ function Product(props) {
                                                     className={classes.tableCell}>{item.quantity}</TableCell>
                                                 <TableCell className={classes.tableCell}>
                                                     <div className={cx('function')}>
-                                                            <LightTooltip title="remove">
-                                                                <IconButton className={classes.iconButton}
-                                                                            aria-label="remove"
-                                                                >
-                                                                    <BsTrash  className={cx('icon-remove')}/>
-                                                                </IconButton>
+                                                        <LightTooltip title="remove">
+                                                            <IconButton className={classes.iconButton}
+                                                                        onClick={() => handleRemove(item.id)}
+                                                                        aria-label="remove"
+                                                            >
+                                                                <BsTrash className={cx('icon-remove')}/>
+                                                            </IconButton>
 
-                                                            </LightTooltip>
+                                                        </LightTooltip>
                                                         <Link to={`/manage-product/edit/${item.id}`}>
                                                             <LightTooltip title="Edit">
                                                                 <IconButton className={classes.iconButton}
                                                                             aria-label="edit"
                                                                 >
-                                                                    <FiEdit2  className={cx('icon-edit')}/>
+                                                                    <FiEdit2 className={cx('icon-edit')}/>
                                                                 </IconButton>
 
                                                             </LightTooltip>
