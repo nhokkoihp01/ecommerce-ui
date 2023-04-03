@@ -1,31 +1,35 @@
 import React, {useContext, useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {Container, Grid} from "@mui/material";
-import {Button} from "@material-ui/core";
+import {NotificationManager} from "react-notifications";
+import {useNavigate} from "react-router-dom";
 
 import styles from "./InfoUser.module.scss";
 import UpLoadFileImage from "~/components/UploadFileImage";
 import {CartContext} from "~/untils/CartProvider";
 import {UpdateInfoUser} from "~/services/workspaces.sevices";
-import validator from "validator";
-import {NotificationManager} from "react-notifications";
-import config from "~/config";
-import {useNavigate} from "react-router-dom";
 import AuthService from "~/services/auth/AuthService";
+import config from "~/config";
+
 
 const cx = classNames.bind(styles);
 
 function InfoUser() {
     const {setShouldUpdate, user} = useContext(CartContext);
     const navigate = useNavigate();
-    const [password, setPassword] = useState('')
-    const [firstName, setFirstName] = useState(user.firstName)
-    const [lastName, setLastName] = useState(user.lastName)
-    const [numberPhone, setNumberPhone] = useState(user.numberPhone)
-    const [errorPassword, setErrorPassword] = useState("")
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [numberPhone, setNumberPhone] = useState('')
     const [errorFirstName, setErrorFirstName] = useState("")
     const [errorLastName, setErrorLastName] = useState("")
     const [errorNumberPhone, setErrorNumberPhone] = useState("")
+    useEffect(() => {
+        if (user) {
+            setFirstName(user.firstName)
+            setLastName(user.lastName)
+            setNumberPhone(user.numberPhone)
+        }
+    }, [])
 
 
     const [showButton, setShowButton] = useState(true);
@@ -40,9 +44,7 @@ function InfoUser() {
         setIsChangeImage(true)
         setImages(imageList);
     };
-    const handleChangePassword = (e) => {
-        setPassword(e.target.value)
-    }
+
     const handleChangeFirstname = (e) => {
         setFirstName(e.target.value)
     }
@@ -52,33 +54,62 @@ function InfoUser() {
     const handleChangeNumberPhone = (e) => {
         setNumberPhone(e.target.value)
     }
-
-    const handleUpdate = async () => {
-        if (validator.isEmpty(password, {min: 6, max: 30}) || validator.isEmpty(firstName)
-            || validator.isEmpty(lastName) || validator.isEmpty(numberPhone)) {
-            setErrorPassword("Mật khẩu phải từ 6 đến 30 kí tự")
+    const validate = () => {
+        let hasError = false;
+        if (firstName === undefined || firstName === "") {
             setErrorFirstName("Họ và tên đệm không được để trống")
+            hasError = true;
+        }
+        if (lastName === undefined || lastName === "") {
             setErrorLastName("Tên không được để trống")
+            hasError = true;
+        }
+        if (numberPhone === undefined || numberPhone === "") {
             setErrorNumberPhone("Số điện thoại không được để trống")
-        } else {
-            const body = {
-                password: password,
-                firstName: firstName,
-                lastName: lastName,
-                numberPhone: numberPhone,
-                image: isChangeImage ? images[0].data_url : user.image
-            }
-            const response = await UpdateInfoUser(user.id, body)
-            if (response?.status === 200) {
-                NotificationManager.success('Sửa thông tin người dùng thành công')
-                await AuthService.logout()
-                navigate(config.routes.login)
-                setShouldUpdate(false)
-            }
+            hasError = true;
         }
 
+        return hasError;
+    };
 
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        if (validate()) {
+            return;
+        }
+        const body = {
+            firstName: firstName,
+            lastName: lastName,
+            numberPhone: numberPhone,
+            image: isChangeImage ? images[0].data_url : user.image
+        }
+        const response = await UpdateInfoUser(user.id, body)
+        if (response?.status === 200) {
+            NotificationManager.success('Sửa thông tin người dùng thành công')
+            await AuthService.logout()
+            navigate(config.routes.login)
+            setShouldUpdate(false)
+        }
     }
+    useEffect(() => {
+        if (firstName !== undefined) {
+            setErrorFirstName('')
+        }
+
+    }, [firstName])
+    useEffect(() => {
+        if (lastName !== undefined) {
+            setErrorLastName('')
+        }
+
+    }, [lastName])
+    useEffect(() => {
+        if (numberPhone !== undefined) {
+            setErrorNumberPhone('')
+        }
+
+    }, [numberPhone])
+
     return (
         <Container>
             <div className={cx('wrapper')}>
@@ -105,12 +136,7 @@ function InfoUser() {
 
 
                                 </div>
-                                <input className={cx('input-item-error')}
-                                       type="password"
-                                       value={password}
-                                       onChange={handleChangePassword}
-                                       placeholder="Password"/>
-                                <span className={cx('error-text')}>{errorPassword}</span>
+
 
                                 <input className={cx('input-item')}
                                        type="email"
@@ -118,30 +144,25 @@ function InfoUser() {
                                        value={user.email}
                                        placeholder="Email"/>
 
-                                    <input className={cx('input-item-error')}
-                                           value={firstName}
-                                           defaultValue={firstName}
-                                           onChange={handleChangeFirstname}
+                                <input className={cx('input-item-error')}
+                                       value={firstName}
+                                       onChange={handleChangeFirstname}
 
-                                           type="text"
-                                           placeholder="First Name"/>
-                                    <span className={cx('error-text')}>{errorFirstName}</span>
+                                       type="text"
+                                       placeholder="First Name"/>
+                                <span className={cx('error-text')}>{errorFirstName}</span>
 
-                                    <input className={cx('input-item-error')}
-                                           type="text"
-                                           // defaultValue={lastName}
-
-                                           defaultValue={lastName}
-                                           value={lastName}
-                                           onChange={handleChangeLastName}
-                                    />
-                                    <span className={cx('error-text')}>{errorLastName}</span>
+                                <input className={cx('input-item-error')}
+                                       type="text"
+                                    // defaultValue={lastName}
+                                       value={lastName}
+                                       onChange={handleChangeLastName}
+                                />
+                                <span className={cx('error-text')}>{errorLastName}</span>
 
 
                                 <input className={cx('input-item')}
                                        value={numberPhone}
-                                       defaultValue={user.numberPhone}
-
                                        onChange={handleChangeNumberPhone}
                                        type="text"
                                 />
