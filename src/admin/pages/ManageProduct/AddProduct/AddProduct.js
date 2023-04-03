@@ -156,6 +156,7 @@ function AddProduct(props) {
                                     <h4 className={cx('name-product')}>Tên sản phẩm</h4>
                                     <InputBase fullWidth
                                                name="nameProduct"
+                                               spellCheck={false}
                                                value={formValue.nameProduct}
                                                onChange={handleChangeInput}
                                                className={cx('input-item')}/>
@@ -170,6 +171,7 @@ function AddProduct(props) {
                                 <div className={cx('input')}>
                                     <h4 className={cx('name-product')}>Mô tả sản phẩm</h4>
                                     <InputBase fullWidth
+                                               spellCheck={false}
                                                name="description"
                                                value={formValue.description}
                                                onChange={handleChangeInput}
@@ -185,6 +187,7 @@ function AddProduct(props) {
                                 <div className={cx('input')}>
                                     <h4 className={cx('name-product')}>Giá mới</h4>
                                     <InputBase fullWidth
+                                               spellCheck={false}
                                                name="newPrice"
                                                value={formValue.newPrice}
                                                inputProps={{
@@ -207,6 +210,7 @@ function AddProduct(props) {
                                 <div className={cx('input')}>
                                     <h4 className={cx('name-product')}>Giá cũ</h4>
                                     <InputBase fullWidth
+                                               spellCheck={false}
                                                name="oldPrice"
                                                inputProps={{
                                                    min: 1,
@@ -228,6 +232,7 @@ function AddProduct(props) {
                                 <div className={cx('input')}>
                                     <h4 className={cx('name-product')}>Sale</h4>
                                     <InputBase fullWidth
+                                               spellCheck={false}
                                                inputProps={{
                                                    min: 1,
                                                    max: 10,
@@ -249,6 +254,7 @@ function AddProduct(props) {
                                 <div className={cx('input')}>
                                     <h4 className={cx('name-product')}>Số lượng</h4>
                                     <InputBase fullWidth
+                                               spellCheck={false}
                                                name="quantity"
                                                type="number"
                                                onKeyPress={handleKeyPress}

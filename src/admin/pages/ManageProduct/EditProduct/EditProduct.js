@@ -2,13 +2,11 @@ import React, {useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {Button, FormControl, FormHelperText, Grid, InputBase, MenuItem, Select} from "@material-ui/core";
 import {useParams} from "react-router-dom";
+import {NotificationManager} from "react-notifications";
 
 import styles from "./EditProduct.module.scss";
 import UpLoadFileImage from "~/components/UploadFileImage";
-import Empty from "~/admin/assets/empty/empty.jpg";
-import validator from "validator";
-import {getCategory, getProductById, insertProduct} from "~/services/workspaces.sevices";
-import {NotificationManager} from "react-notifications";
+import {getCategory, getProductById, updateProduct} from "~/services/workspaces.sevices";
 
 const cx = classNames.bind(styles);
 
@@ -81,9 +79,9 @@ function EditProduct(props) {
             ...classProduct,
             nameProduct: nameProduct,
             description: description,
-            newPrice: newPrice +"",
+            newPrice: newPrice + "",
             oldPrice: oldPrice,
-            quantity: quantity,
+            quantity: quantity + "",
             sale: sale,
             image: ''
         }
@@ -124,19 +122,18 @@ function EditProduct(props) {
             name: formValue.nameProduct,
             description: formValue.description,
             image: images.length > 0 ? images[0].data_url : product.image,
-            quantity: formValue.quantity,
-            newPrice: parseInt(formValue.newPrice) ,
+            quantity: parseInt(formValue.quantity),
+            newPrice: parseInt(formValue.newPrice),
             oldPrice: formValue.oldPrice,
             sale: formValue.sale,
             categoryId: categoryId,
         };
-        console.log(body)
-        // const response = await insertProduct(body);
-        // if (response.data.status === "400") {
-        //     setErrorNameProduct("Sản phẩm đã tồn tại");
-        // } else {
-        //     NotificationManager.success("Thêm sản phẩm thành công");
-        // }
+        const response = await updateProduct(id,body);
+        if (response.data.status === "400") {
+            NotificationManager.error("Cập nhật sản phẩm thất bại")
+        } else {
+            NotificationManager.success("Thêm sản phẩm thành công");
+        }
 
 
     }
@@ -159,11 +156,11 @@ function EditProduct(props) {
 
     }, [formValue.newPrice])
 
-    // useEffect(() => {
-    //     if (!validator.isEmpty(formValue.quantity)) {
-    //         setErrorQuantity('')
-    //     }
-    // }, [formValue.quantity])
+    useEffect(() => {
+        if (formValue.quantity.length > 0) {
+            setErrorQuantity('')
+        }
+    }, [formValue.quantity])
     const handleKeyPress = (event) => {
         const charCode = event.which ? event.which : event.keyCode;
         if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -189,6 +186,7 @@ function EditProduct(props) {
                         <div className={cx('input')}>
                             <h4 className={cx('name-product')}>Tên sản phẩm</h4>
                             <InputBase fullWidth
+                                       spellCheck={false}
                                        name="nameProduct"
                                        value={formValue.nameProduct}
                                        onChange={handleChangeInput}
@@ -202,6 +200,7 @@ function EditProduct(props) {
                         <div className={cx('input')}>
                             <h4 className={cx('name-product')}>Mô tả sản phẩm</h4>
                             <InputBase fullWidth
+                                       spellCheck={false}
                                        name="description"
                                        value={formValue.description}
                                        onChange={handleChangeInput}
@@ -216,6 +215,7 @@ function EditProduct(props) {
                             <h4 className={cx('name-product')}>Giá mới</h4>
                             <InputBase fullWidth
                                        name="newPrice"
+                                       spellCheck={false}
                                        value={formValue.newPrice}
                                        inputProps={{
                                            min: 1,
@@ -235,6 +235,7 @@ function EditProduct(props) {
                             <h4 className={cx('name-product')}>Giá cũ</h4>
                             <InputBase fullWidth
                                        name="oldPrice"
+                                       spellCheck={false}
                                        inputProps={{
                                            min: 1,
                                            max: 10,
@@ -252,6 +253,7 @@ function EditProduct(props) {
                         <div className={cx('input')}>
                             <h4 className={cx('name-product')}>Sale</h4>
                             <InputBase fullWidth
+                                       spellCheck={false}
                                        inputProps={{
                                            min: 1,
                                            max: 10,
@@ -270,6 +272,7 @@ function EditProduct(props) {
                         <div className={cx('input')}>
                             <h4 className={cx('name-product')}>Số lượng</h4>
                             <InputBase fullWidth
+                                       spellCheck={false}
                                        name="quantity"
                                        type="number"
                                        onKeyPress={handleKeyPress}
