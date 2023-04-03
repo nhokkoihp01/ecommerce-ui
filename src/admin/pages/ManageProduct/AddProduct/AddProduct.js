@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {InputBase, Grid, FormControl, Select, MenuItem, Button, FormHelperText} from "@material-ui/core";
-import {useMediaQuery} from "react-responsive";
-import {useNavigate} from "react-router-dom";
+
 
 
 import styles from "./AddProduct.module.scss";
