@@ -33,7 +33,7 @@ function UserDropdown(props) {
                         <Link to={config.routes.infoUser} className={cx("dropdown-item")}>
                             Tài khoản của tôi
                         </Link>
-                        <Link to={'/'} className={cx("dropdown-item")}>
+                        <Link to={config.routes.orderUser} className={cx("dropdown-item")}>
                             Đơn mua
                         </Link>
                         <span onClick={handleLogout} className={cx("dropdown-item")}>
