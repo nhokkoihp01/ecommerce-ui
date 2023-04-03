@@ -15,8 +15,6 @@ import {NotificationManager} from "react-notifications";
 const cx = classNames.bind(styles);
 
 function AddProduct(props) {
-    const isTablet = useMediaQuery({maxWidth: 768})
-    const navigate = useNavigate();
     const [categoryId, setCategoryId] = useState("6417f864e4fd34289f93334f");
     const [categories, setCategories] = useState([])
 
@@ -24,8 +22,7 @@ function AddProduct(props) {
     const [errorDescription, setErrorDescription] = useState('')
     const [errorNewPrice, setErrorNewPrice] = useState('')
     const [errorQuantity, setErrorQuantity] = useState('')
-    const [errorCategory, setErrorCategory] = useState('')
-    const [errorImage, setErrorImage] = useState('')
+
 
 
     const [isChangeImage, setIsChangeImage] = useState(false)
@@ -80,18 +77,13 @@ function AddProduct(props) {
             setErrorQuantity("Số lượng sản phẩm không được để trống")
             hasError = true;
         }
-        // if (validator.isEmpty(formValue.image)) {
-        //     setErrorImage("Hình ảnh sản phẩm không được để trống")
-        //     hasError = true;
-        // }
-
 
         return hasError;
     };
     const handleCreateProduct = async (e) => {
         e.preventDefault();
         if (validate()) {
-            return; // Stop execution if there are errors
+            return;
         }
         const body = {
             name: formValue.nameProduct,
@@ -112,7 +104,6 @@ function AddProduct(props) {
 
 
     }
-    console.log(formValue.image)
     useEffect(() => {
         if (formValue.nameProduct.length > 0) {
             setErrorNameProduct('')
@@ -149,8 +140,8 @@ function AddProduct(props) {
         <div className={cx('wrapper')}>
             <h3 className={cx('header')}>Thêm sản phẩm</h3>
             <div className={cx('form-product')}>
-                <Grid container direction={isTablet ? "column" : "row"}>
-                    <Grid item md={8} sm={12}>
+                <Grid container direction={"column"}>
+                    <Grid item md={2} sm={12}>
                         <UpLoadFileImage imageProduct={Empty}
                                          open={open}
                                          images={images}
@@ -158,7 +149,6 @@ function AddProduct(props) {
                                          maxNumber={maxNumber}
                                          onChange={onChange}
                                          showButton={showButton}/>
-                        <FormHelperText className={cx('error')}>{errorImage}</FormHelperText>
                     </Grid>
                     {
                         isChangeImage && (
@@ -292,7 +282,6 @@ function AddProduct(props) {
 
                                         </Select>
                                     </FormControl>
-                                    <FormHelperText className={cx('error')}>{errorCategory}</FormHelperText>
                                 </div>
                             </Grid>
                         )
