@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import classNames from "classnames/bind";
-import styles from "./Product.module.scss";
+import {useMediaQuery} from "react-responsive";
 import {Grid} from "@mui/material";
+
+import styles from "./Product.module.scss";
 import ProductItem from "~/layouts/components/ProductItem";
 import {getAllProduct} from "~/services/workspaces.sevices";
-import {useMediaQuery} from "react-responsive";
 
 const cx = classNames.bind(styles);
 
