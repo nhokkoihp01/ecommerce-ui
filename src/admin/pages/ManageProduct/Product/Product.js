@@ -32,7 +32,7 @@ function Product(props) {
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         setIsLoading(true);
-        getAllProduct().then((res) => setProducts(res?.data.data))
+        getAllProduct(0).then((res) => setProducts(res?.data.data))
     }, [])
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
