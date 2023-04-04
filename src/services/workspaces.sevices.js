@@ -58,6 +58,11 @@ export const createOrder = async (userId,body) => {
     return await instance.post(`/order/payment?userId=${userId}`,body,{headers: authHeader()})
 
 };
+export const getOrderByUserId = async (userId) => {
+    const result = await instance.get(`/order/${userId}`,{headers: authHeader()})
+    return result.data
+
+};
 export const UpdateInfoUser = async (userId,body) => {
     return await instance.put(`/users/update/${userId}`,body,{headers: authHeader()})
 
