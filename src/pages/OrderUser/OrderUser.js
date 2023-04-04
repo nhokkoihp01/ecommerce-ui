@@ -38,7 +38,7 @@ function OrderUser(props) {
                             orders.map((item,index)=>{
                                 return (
                                     <div key={index} className={cx('user')}>
-                                        <span>Order ID:{item.id}</span>
+                                        <p className={cx('user-id')}>Order ID:{item.id}</p>
                                         {
                                             item.cartItems.map((order,index)=>{
                                                 return (
