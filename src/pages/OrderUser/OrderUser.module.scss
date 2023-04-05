@@ -10,13 +10,19 @@
   color: #FFFFFF;
   background: #14AAFF;
 }
+.user{
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #cccccc;
+}
 .order-user{
     display: flex;
+
   @media only screen and (max-width: 1250px) {
     flex-direction: column;
   }
   &-left{
-    width: 70%;
+    width: 100%;
     @media only screen and (max-width: 1250px) {
       width: 100%;
     }
@@ -29,6 +35,7 @@
       margin: 10px 0;
       border-radius: 5px;
       justify-content: space-between;
+      border: 1px solid #14AAFF;
       &:nth-of-type(odd){
         background: #F5F5F5;
       }
@@ -36,10 +43,12 @@
         background: #cccccc;
       }
       &-img{
+        width: 100px;
 
         & img{
-          width: 100px;
-          height: 100px;
+          padding: 2px;
+          width: 100%;
+          height: 100%;
 
         }
       }
@@ -111,7 +120,7 @@
     width: 60%;
     max-height: 300px;
     margin-top: 10px;
-    margin-left: 10px;
+
     border-radius: 5px;
     padding: 5px 10px;
     background: #14AAFF;
@@ -172,4 +181,12 @@
       }
     }
   }
+}
+.user-id{
+  margin: 10px 0;
+  border: 1px solid #14AAFF;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 600;
 }
