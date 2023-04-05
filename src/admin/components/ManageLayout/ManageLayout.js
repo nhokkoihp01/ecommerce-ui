@@ -39,7 +39,7 @@ function ManageLayout({children}) {
             items: [
                 {
                     name: 'Tất cả',
-                    to: ""
+                    to: config.routes.manageOrder
                 },
                 {
                     name: 'Đơn hủy',

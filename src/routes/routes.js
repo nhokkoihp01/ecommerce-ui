@@ -11,6 +11,7 @@ import OrderUser from "~/pages/OrderUser";
 import ManageProduct from "~/admin/pages/ManageProduct/Product";
 import ManageEditProduct from "~/admin/pages/ManageProduct/EditProduct";
 import ManageAddProduct from "~/admin/pages/ManageProduct/AddProduct";
+import ManageOrder from "~/admin/pages/ManageOrder/Order";
 
 
 
@@ -26,6 +27,7 @@ const publicRoutes = [
     {path: config.routes.orderUser, component: OrderUser},
     {path: config.routes.login, component: Login, layout: null},
     {path: config.routes.register, component: Register, layout: null},
+    {path: config.routes.manageOrder, component: ManageOrder, layout: null},
     {path: config.routes.manageProduct, component: ManageProduct, layout: null},
     {path: config.routes.editProduct, component: ManageEditProduct, layout: null},
     {path: config.routes.addProduct, component: ManageAddProduct, layout: null},
