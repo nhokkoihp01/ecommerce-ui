@@ -8,6 +8,10 @@ export const getCategory = async () => {
 export const getAllProduct = async (maxResult) => {
     return await instance.get(`/products/all?maxResult=${maxResult}`);
 };
+export const getAllOrder = async () => {
+   const result= await instance.get("/order",{headers: authHeader()});
+   return result.data;
+};
 export const insertProduct = async (body) => {
     return await instance.post("/products",body,{headers: authHeader()});
 };
