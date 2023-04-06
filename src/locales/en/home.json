@@ -1,0 +1,17 @@
+{
+  "top nav bar": {
+    "become a tiki seller" : "Become a Tiki seller",
+    "download app" : "Download app",
+    "connect": "Connect",
+    "notification": "Notification",
+    "register" : "Register",
+    "login": "Login",
+    "search": "Search",
+    "home page" :"Home Page",
+    "manage product": "Manage Product"
+  },
+  "category": {
+    "category name" : "category"
+
+  }
+}
