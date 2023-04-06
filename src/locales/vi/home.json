@@ -1,0 +1,17 @@
+{
+  "top nav bar": {
+    "become a tiki seller" : "Trở thành người bán Tiki",
+    "download app" : "Tải ứng dụng",
+    "connect": "Kết nối",
+    "notification": "Thông báo",
+    "register" : "Đăng kí",
+    "login": "Đăng nhập",
+    "search": "Tìm kiếm",
+    "home page" :"Trang chủ",
+    "manage product": "Quản lý sản phẩm"
+  },
+  "category": {
+    "category name" : "Danh mục"
+
+  }
+}
