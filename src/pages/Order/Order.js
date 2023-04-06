@@ -16,9 +16,9 @@ import validator from "validator";
 const cx = classNames.bind(styles);
 
 function Order(props) {
-    const {carts,setShouldUpdate, totalPrice, user} = useContext(CartContext);
+    const {carts, setShouldUpdate, totalPrice, user} = useContext(CartContext);
     const [address, setAddress] = useState('')
-    const [error,setError] = useState('')
+    const [error, setError] = useState('')
     const navigate = useNavigate();
     const handleChanAddress = (e) => {
         setAddress(e.target.value)
@@ -30,19 +30,22 @@ function Order(props) {
 
     }, [address])
     const handleCreateOrder = async () => {
-        if (validator.isEmpty(address)){
+        if (validator.isEmpty(address)) {
             setError("Địa chỉ không được để trống")
-        }
-        else{
+        } else {
             const body = {
-                userId:user.id,
+                userId: user.id,
+                email: user.email,
+                name: user.firstName + user.lastName,
+                numberPhone: user.numberPhone,
                 totalPrice: totalPrice,
                 address: address,
                 cartItems: carts
             }
+            console.log(body)
             const response = await createOrder(user.id, body)
             if(response?.status === 200){
-                NotificationManager.success('Đăng ký thành công', 'Sau 5s chuyển tới trang chủ', 5000,()=>{
+                NotificationManager.success('Đặt đơn hàng thành công', 'Sau 5s chuyển tới trang chủ', 5000,()=>{
                     navigate(config.routes.home)
                 });
                 setTimeout(()=>{
@@ -78,7 +81,7 @@ function Order(props) {
                             <h3 className={cx('label')}>Địa chỉ</h3>
                             <InputBase placeholder="vd:37 Phú Châu,Tam Bình,Thủ Đức"
                                        value={address}
-                                       onChange={ handleChanAddress}
+                                       onChange={handleChanAddress}
                                        className={cx('input-item')}
                                        type="text"/>
                             <span className={cx('error')}>{error}</span>
