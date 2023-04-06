@@ -8,6 +8,7 @@ import Checkout from "~/pages/Checkout/Checkout";
 import Order from "~/pages/Order";
 import InfoUser from "~/pages/InfoUser";
 import OrderUser from "~/pages/OrderUser";
+import UpdatePassword from "~/pages/UpdatePassword";
 import ManageProduct from "~/admin/pages/ManageProduct/Product";
 import ManageEditProduct from "~/admin/pages/ManageProduct/EditProduct";
 import ManageAddProduct from "~/admin/pages/ManageProduct/AddProduct";
@@ -25,6 +26,7 @@ const publicRoutes = [
     {path: config.routes.product, component: Product},
     {path: config.routes.payment, component: Order},
     {path: config.routes.orderUser, component: OrderUser},
+    {path: config.routes.updatePassword, component: UpdatePassword},
     {path: config.routes.login, component: Login, layout: null},
     {path: config.routes.register, component: Register, layout: null},
     {path: config.routes.manageOrder, component: ManageOrder, layout: null},

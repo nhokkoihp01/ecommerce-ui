@@ -38,7 +38,10 @@ function UserDropdown(props) {
                         </Link>
                         <span onClick={handleLogout} className={cx("dropdown-item")}>
                         Đăng xuất
-                    </span>
+                        </span>
+                        <Link to={config.routes.updatePassword} className={cx("dropdown-item")}>
+                            Đổi mật khẩu
+                        </Link>
                     </div>
                 )}
             >
