@@ -5,6 +5,9 @@ export const useTableStyles = makeStyles({
     tableContainer: {
       overflowX:"auto"
     },
+    TableRow: {
+        fontWeight:"bold"
+    },
     tableCell: {
         fontSize: '16px',
 
