@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from "./Category.module.scss";
 import CategoryItem from "~/pages/Home/category/category-item";
 import {getCategory} from "~/services/workspaces.sevices";
+import {useTranslation} from "react-i18next";
 
 
 const cx = classNames.bind(styles);
@@ -18,12 +19,12 @@ function Category(props) {
         getCategory().then((res)=> setCategories(res.data))
 
     },[])
-
+    const {t, i18n} = useTranslation('home');
   return (
     <div className={cx("wrapper")}>
       <Container style={{ padding: 0 }}>
         <div className={cx("category-header")}>
-          <div className={cx("category-header-name")}>DANH MỤC</div>
+          <div className={cx("category-header-name")}>{t('category.category name')}</div>
         </div>
         <div className={cx("category-content")}>
             <CategoryItem categories={categories}/>

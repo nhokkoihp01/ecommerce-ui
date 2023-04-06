@@ -13,12 +13,14 @@ import Cart from "~/layouts/components/Header/Cart/Cart";
 import config from "~/config";
 import {AiFillHome} from 'react-icons/ai';
 import {GiHamburgerMenu} from 'react-icons/gi';
+import {useTranslation} from "react-i18next";
 
 
 const cx = classNames.bind(styles);
 
 
 function Header(props) {
+    const {t, i18n} = useTranslation('home');
 
     const maxWidth600 = useMediaQuery({maxWidth: 600})
     const isTablet = useMediaQuery({maxWidth: 768})
@@ -43,7 +45,7 @@ function Header(props) {
                                 <div className={cx('home')}>
                                     <Link className={cx('navbar-item')} to={config.routes.home}>
                                         <AiFillHome className={cx('icon')}/>
-                                        Trang chủ
+                                        {t('top nav bar.home page')}
                                     </Link>
                                 </div>
                             </Grid>

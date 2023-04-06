@@ -7,7 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from "~/components/GlobalStyles";
 import CartProvider from "~/untils/CartProvider";
-
+import './i18n/i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
