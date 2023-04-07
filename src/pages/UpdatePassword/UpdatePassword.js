@@ -1,70 +1,81 @@
 import React, {useContext, useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {Container} from "@material-ui/core";
+import {Button, Grid} from "@mui/material";
+import validator from "validator";
+import {useNavigate} from "react-router-dom";
+import {NotificationManager} from "react-notifications";
 
 
 import styles from "./UpdatePassword.module.scss";
 import {CartContext} from "~/untils/CartProvider";
-import validator from "validator";
 import AuthService from "~/services/auth/AuthService";
-import {Button, Grid} from "@mui/material";
+import {updatePasswordByUser} from "~/services/workspaces.sevices";
+import config from "~/config";
 
 
 const cx = classNames.bind(styles);
 
 function UpdatePassword(props) {
+    const {setShouldUpdate} = useContext(CartContext);
+    const navigate = useNavigate();
+    const [newPassword, setNewPassword] = useState('')
+    const [oldPassword, setOldPassword] = useState('')
+    const [errorOldPassword, setErrorOldPassword] = useState('')
+    const [errorNewPassword, setErrorNewPassword] = useState('')
 
-
-    const [newPassword, setNewPassword] = useState("")
-    const [reNewPassword, setReNewPassword] = useState("")
-
-    const [error, setError] = useState("")
-    const {setShouldUpdate,user} = useContext(CartContext);
-    // const [password, setPassword] = useState('')
-    // useEffect(() => {
-    //     if (user) {
-    //     setPassword(user.password)
-    //
-    //     }
-    // }, [])
-    console.log('pppp')
-    console.log(user)
     const handleChangeNewPassword = (e) => {
         setNewPassword(e.target.value)
     }
 
-    const handleChangeReNewPassword = (e) => {
-        setReNewPassword(e.target.value)
+    const handleChangeOldPassword = (e) => {
+        setOldPassword(e.target.value)
     }
 
     useEffect(() => {
         if (newPassword.length > 0) {
-            setError('')
+            setErrorNewPassword('')
         }
 
     }, [newPassword])
     useEffect(() => {
-        if (reNewPassword.length > 0) {
-            setError('')
+        if (oldPassword.length > 0) {
+            setErrorOldPassword('')
         }
 
-    }, [reNewPassword])
+    }, [oldPassword])
+    const validate = () => {
+        let hasError = false;
+        if (validator.isEmpty(newPassword)) {
+            setErrorNewPassword("Mật khẩu mới không được để trống!")
+            hasError = true;
+        }
+        if (validator.isEmpty(oldPassword)) {
+            setErrorOldPassword("Mật khẩu cũ không được để trống!")
+            hasError = true;
+        }
 
+        return hasError;
+    };
     const handleUpdatePassword = async (e) => {
-        if (validator.isEmpty(newPassword) || validator.isEmpty(reNewPassword)) {
-            setError(" Mật khẩu mới , Nhập lại mật khẩu mới ,không được để trống")
-        } else {
-            const response = await AuthService.login(newPassword, reNewPassword);
-            if (response?.data.accessToken) {
-                setShouldUpdate(true);
-                window.history.back()
-            }
-
-            if (response?.data.status === "UNAUTHORIZED") {
-                // setError("Tài khoản hoặc mật khẩu không đúng")
-            } else {
-                setError("")
-            }
+        e.preventDefault();
+        if (validate()) {
+            return;
+        }
+        const user = JSON.parse(localStorage.getItem("token"))
+        const body = {
+            oldPassword: oldPassword,
+            newPassword: newPassword
+        }
+        const response = await updatePasswordByUser(user.userId, body)
+        if (response.data.status === '400') {
+            setErrorOldPassword("Mật khẩu cũ không đúng!")
+        }
+        else{
+            NotificationManager.success('Đổi mật khẩu thành công')
+            await AuthService.logout()
+            navigate(config.routes.login)
+            setShouldUpdate(false)
         }
 
 
@@ -80,23 +91,21 @@ function UpdatePassword(props) {
                 <Grid container justifyContent={"center"}>
                     <Grid item container md={4}>
                         <div className={cx("form-login")}>
-                            <h1 className={cx('login-header')}>Update Password</h1>
-                            <div className={cx('error')}>
-                                <span>{error}</span>
-                            </div>
-
+                            <h1 className={cx('login-header')}>Đổi mật khẩu</h1>
                             <input className={cx('input-item')}
                                    type="password"
+                                   value={oldPassword}
+                                   onKeyPress={handleKeyPress}
+                                   onChange={handleChangeOldPassword}
+                                   placeholder="Nhập mật khẩu cũ"/>
+                            <span className={cx('error-item')}>{errorOldPassword}</span>
+                            <input className={cx('input-item')}
                                    value={newPassword}
                                    onKeyPress={handleKeyPress}
                                    onChange={handleChangeNewPassword}
-                                   placeholder="Nhập mật khẩu mới"/>
-                            <input className={cx('input-item')}
                                    type="password"
-                                   value={reNewPassword}
-                                   onKeyPress={handleKeyPress}
-                                   onChange={handleChangeReNewPassword}
-                                   placeholder="Nhập lại mật khẩu mới"/>
+                                   placeholder="Nhập mật khẩu mới"/>
+                            <span className={cx('error-item')}>{errorNewPassword}</span>
                             <div className={cx('function')}>
                                 <Button size={"large"}
                                         className={cx('btn-login')}
