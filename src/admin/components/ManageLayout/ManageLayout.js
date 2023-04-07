@@ -7,7 +7,8 @@ import {useMediaQuery} from "react-responsive";
 
 import styles from "./ManageLayout.module.scss";
 import {MdOutlineEmojiTransportation} from "react-icons/md";
-import {FaHeart} from "react-icons/fa";
+import {BiDownArrowCircle} from 'react-icons/bi'
+import {FaHeart,FaUserFriends} from "react-icons/fa";
 import config from "~/config";
 import Header from "~/admin/components/Header/Header";
 
@@ -20,7 +21,7 @@ function ManageLayout({children}) {
         {
             id: 1,
             label: 'Quản lý sản phẩm',
-            icon: <MdOutlineEmojiTransportation/>,
+            icon: <BiDownArrowCircle/>,
             items: [
                 {
                     name: 'Tất cả sản phẩm',
@@ -43,6 +44,40 @@ function ManageLayout({children}) {
                 },
                 {
                     name: 'Đơn hủy',
+                    to: ""
+                },
+            ]
+        },
+        {
+            id: 2,
+            label: 'Quản lý vận chuyển',
+            icon: <MdOutlineEmojiTransportation/>,
+            items: [
+                {
+                    name: 'Tất cả',
+                    to: ""
+                },
+                {
+                    name: 'Đơn hủy',
+                    to: ""
+                },
+            ]
+        },
+        {
+            id: 3,
+            label: 'Quản lý tài khoản',
+            icon: <FaUserFriends/>,
+            items: [
+                {
+                    name: 'Tất cả',
+                    to: config.routes.manageUser
+                },
+                {
+                    name: 'Thêm tài khoản',
+                    to: ""
+                },
+                {
+                    name: 'Tài khoản bị cấm',
                     to: ""
                 },
             ]

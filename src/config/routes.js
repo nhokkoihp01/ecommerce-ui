@@ -11,6 +11,7 @@ const routes = {
     manageProduct: "/manage-product",
     editProduct:"/manage-product/edit/:id",
     addProduct:"/manage-product/add",
+    manageUser:"/manage-user",
     manageOrder: "/manage-order",
     manageAccount: "/manage-account",
     infoUser: "/info-user",
