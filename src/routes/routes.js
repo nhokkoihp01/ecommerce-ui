@@ -19,6 +19,7 @@ import ManageUser from "~/admin/pages/ManageUser/User";
 
 
 
+
 const publicRoutes = [
     {path: '/', component: Home},
     {path: config.routes.home, component: Home},
