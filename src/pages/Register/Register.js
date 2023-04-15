@@ -4,7 +4,7 @@ import {Button, Container, Grid} from "@mui/material";
 import validator from 'validator';
 import { NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import styles from "./Register.module.scss";
 import AuthService from "~/services/auth/AuthService";
@@ -173,7 +173,10 @@ function Register(props) {
                                    placeholder="Nhập mật khẩu"/>
 
                             <span className={cx('error-item')}>{errorPassword}</span>
-
+                            <span className={cx('notify')}>
+                                Bạn có chưa có tài khoản
+                                <Link to={config.routes.login} className={cx('link')}>Đăng nhập</Link>
+                            </span>
                             <div className={cx('function')}>
                                 <Button size={"large"}
                                         onClick={handleRegister}

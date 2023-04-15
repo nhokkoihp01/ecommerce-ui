@@ -1,5 +1,6 @@
 import instance from "~/interceptors/axios";
 import authHeader from "~/services/auth/authHeader";
+import jwt_decode from "jwt-decode";
 
 
 const login = async (username, password) => {
@@ -41,6 +42,19 @@ const getCurrentUser = () => {
 const logout = () => {
     localStorage.removeItem("token");
 };
+const isTokenExpired = () => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    if (!token || !token.accessToken) {
+        return true;
+    }
+    const decodedToken = jwt_decode(token.accessToken);
+    if (!decodedToken || !decodedToken.exp) {
+        return true;
+    }
+    const expireTime = new Date(decodedToken.exp * 1000);
+    const currentTime = new Date();
+    return currentTime > expireTime;
+};
 
 
 const AuthService = {
@@ -48,7 +62,8 @@ const AuthService = {
     getInfoUser,
     getCurrentUser,
     logout,
-    register
+    register,
+    isTokenExpired
 
 };
 export default AuthService;

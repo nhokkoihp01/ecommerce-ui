@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 function Product(props) {
     const [products,setProducts] = useState([])
     useEffect(()=>{
-        getAllProduct(20).then((res)=> setProducts(res.data.data))
+        getAllProduct(24).then((res)=> setProducts(res.data.data))
     },[])
     const isMaxWidth = useMediaQuery({maxWidth:1100})
     return (
