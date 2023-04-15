@@ -20,7 +20,7 @@ import styles from "./User.module.scss";
 import {BsTrash} from "react-icons/bs";
 import {FiEdit2} from "react-icons/fi";
 import {useTableStyles} from "~/components/CustomerMaterial";
-import { getAllUsers} from "~/services/workspaces.sevices";
+import {deleteUserById, getAllUsers} from "~/services/workspaces.sevices";
 import {tooltipClasses} from "@mui/material";
 
 
@@ -33,7 +33,7 @@ function User(props) {
     useEffect(() => {
         setIsLoading(true);
         getAllUsers(0).then((res) => setUsers(res?.data))
-    }, [])
+    }, [isLoading])
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -53,15 +53,16 @@ function User(props) {
         },
     }));
     const handleRemove = async (id) => {
-        console.log(id)
-        // const response = await deleteProduct(id);
-        // if(response?.data.status === "200"){
-        //     NotificationManager.success("Xoá sản phẩm thành công");
-        //     setIsLoading(true);
-        //     getAllProduct()
-        //         .then((res) => setProducts(res?.data.data))
-        //         .finally(() => setIsLoading(false));
-        // }
+        const response = await deleteUserById(id);
+        if(response?.data.status === "UNAUTHORIZED"){
+            NotificationManager.error("Bạn không có quyền xóa");
+        }
+        if(response?.data.status === "OK"){
+            NotificationManager.success("Xóa thành công");
+            setIsLoading(false)
+        }
+
+
 
     }
     return (

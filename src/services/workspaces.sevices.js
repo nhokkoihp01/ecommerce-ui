@@ -75,6 +75,11 @@ export const updatePasswordByUser = async (userId, body) => {
     return await instance.post(`/users/update/password/${userId}`, body, {headers: authHeader()})
 
 };
+export const deleteUserById = async (userId) => {
+    return await instance.delete(`/users/${userId}`, {headers: authHeader()})
+
+};
+
 export const getAllUsers = async () => {
     const result = await instance.get(`/users`, {headers: authHeader()})
     return result.data

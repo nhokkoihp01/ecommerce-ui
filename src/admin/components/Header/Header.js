@@ -20,7 +20,7 @@ function Header(props) {
     const handleLogout = () => {
         AuthService.logout();
         navigate(config.routes.home)
-        setShouldUpdate(false)
+        setShouldUpdate(prev => !prev)
     }
 
     return (
@@ -43,7 +43,7 @@ function Header(props) {
                                 <AiOutlineFileDone/>
                                 Hồ sơ Shop
                             </a>
-                            <span onClick={handleLogout} className={cx('profile-item')} >
+                            <span onClick={handleLogout} className={cx('profile-item')}>
                                 <IoIosLogOut/>
                                 Đăng xuất
                             </span>

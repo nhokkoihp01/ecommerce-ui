@@ -17,7 +17,7 @@ function Content(props) {
     const [products,setProducts] = useState([])
     const [priceRange, setPriceRange] = useState([0, 0]);
     const [page, setPage] = useState(1);
-    const [rowsPerPage] = useState(10);
+    const [rowsPerPage] = useState(12);
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -105,23 +105,27 @@ function Content(props) {
                     }
 
                 </Grid>
-                <Grid item md={12} style={{ paddingTop: "40px" }}>
-                    <Pagination
-                        count={Math.ceil(products?.length / rowsPerPage)}
-                        page={page}
-                        onChange={handleChangePage}
-                        color="primary"
-                        renderItem={(item) => (
-                            <PaginationItem
-                                slots={{
-                                    previous: ArrowLeft,
-                                    next: ArrowRight,
-                                }}
-                                {...item}
+                {
+                    products?.length > 0 && (
+                        <Grid item md={12} style={{ paddingTop: "40px" }}>
+                            <Pagination
+                                count={Math.ceil(products?.length / rowsPerPage)}
+                                page={page}
+                                onChange={handleChangePage}
+                                color="primary"
+                                renderItem={(item) => (
+                                    <PaginationItem
+                                        slots={{
+                                            previous: ArrowLeft,
+                                            next: ArrowRight,
+                                        }}
+                                        {...item}
+                                    />
+                                )}
                             />
-                        )}
-                    />
-                </Grid>
+                        </Grid>
+                    )
+                }
 
             </div>
 

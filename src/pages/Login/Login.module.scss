@@ -32,6 +32,16 @@
   padding: 8px 0;
   color: #f53e2d;
 }
+.notify{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+.link{
+  color: var(--primary-color);
+  margin-left: 3px;
+}
 .function{
   margin-top: 12px;
   width: 100%;
@@ -42,5 +52,5 @@
 .btn-login{
   width: 40%;
   padding: 4px;
-  font-size: 1.8rem;
+  font-size: 1.4rem !important;
 }
