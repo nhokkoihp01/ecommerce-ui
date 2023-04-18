@@ -7,6 +7,9 @@ import {NotificationManager} from "react-notifications";
 import styles from "./EditProduct.module.scss";
 import UpLoadFileImage from "~/components/UploadFileImage";
 import {getCategory, getProductById, updateProduct} from "~/services/workspaces.sevices";
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
+import {storage} from "~/firebase/firebase";
+import {v4} from "uuid";
 
 const cx = classNames.bind(styles);
 
@@ -54,8 +57,8 @@ function EditProduct(props) {
     const [open, setOpen] = useState(true)
     const [images, setImages] = useState([]);
     const maxNumber = 1;
-    const onChange = (imageList, addUpdateIndex) => {
 
+    const onChange = (imageList, addUpdateIndex) => {
         setShowButton(false)
         setOpen(false)
         setIsChangeImage(true)
@@ -64,6 +67,7 @@ function EditProduct(props) {
     const handleChange = (event) => {
         setCategoryId(event.target.value);
     };
+    console.log(images)
     const classProduct = {
         nameProduct: nameProduct,
         description: '',
@@ -118,10 +122,17 @@ function EditProduct(props) {
         if (validate()) {
             return;
         }
+        let downloadURL = product.image;
+        if (images.length > 0) {
+            const storageRef = ref(storage, `images/${images[0]?.file.name + v4()}`);
+            const snapshot = await uploadBytes(storageRef, images[0].file);
+            downloadURL = await getDownloadURL(snapshot.ref);
+        }
+
         const body = {
             name: formValue.nameProduct,
             description: formValue.description,
-            image: images.length > 0 ? images[0].data_url : product.image,
+            image: downloadURL,
             quantity: parseInt(formValue.quantity),
             newPrice: parseInt(formValue.newPrice),
             oldPrice: formValue.oldPrice,
