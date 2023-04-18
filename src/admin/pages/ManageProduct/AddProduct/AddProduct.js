@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import classNames from "classnames/bind";
 import {InputBase, Grid, FormControl, Select, MenuItem, Button, FormHelperText} from "@material-ui/core";
-
-
+import validator from "validator";
+import {NotificationManager} from "react-notifications";
+import {ref,uploadBytes,getDownloadURL} from 'firebase/storage'
+import {v4} from "uuid"
 
 import styles from "./AddProduct.module.scss";
 import Empty from '~/admin/assets/empty/empty.jpg'
 import {getCategory, insertProduct} from "~/services/workspaces.sevices";
 import UpLoadFileImage from "~/components/UploadFileImage";
-import validator from "validator";
-import {NotificationManager} from "react-notifications";
+import {storage} from "~/firebase/firebase";
 
 const cx = classNames.bind(styles);
 
@@ -29,13 +30,18 @@ function AddProduct(props) {
     const [open, setOpen] = useState(true)
     const [images, setImages] = useState([]);
     const maxNumber = 1;
+
+
     const onChange = (imageList, addUpdateIndex) => {
 
         setShowButton(false)
         setOpen(false)
         setIsChangeImage(true)
         setImages(imageList);
+
     };
+
+
     useEffect(() => {
         getCategory().then((res) => setCategories(res?.data))
     }, [])
@@ -84,16 +90,20 @@ function AddProduct(props) {
         if (validate()) {
             return;
         }
+        const storageRef = ref(storage, `images/${images[0]?.file.name + v4()}`);
+        const snapshot = await uploadBytes(storageRef, images[0].file);
+        const downloadURL = await getDownloadURL(snapshot.ref);
         const body = {
             name: formValue.nameProduct,
             description: formValue.description,
-            image: images[0].data_url,
+            image: downloadURL,
             quantity: formValue.quantity,
             newPrice: formValue.newPrice,
             oldPrice: formValue.oldPrice,
             sale: formValue.sale,
             categoryId: categoryId,
         };
+        console.log(body)
         const response = await insertProduct(body);
         if (response.data.status === "400") {
             setErrorNameProduct("Sản phẩm đã tồn tại");
