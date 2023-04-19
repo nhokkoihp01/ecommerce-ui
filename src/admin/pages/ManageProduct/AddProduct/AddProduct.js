@@ -103,8 +103,9 @@ function AddProduct(props) {
             sale: formValue.sale,
             categoryId: categoryId,
         };
-        console.log(body)
-        const response = await insertProduct(body);
+        const  user = JSON.parse(localStorage.getItem("token"))
+        const userId = user.userId
+        const response = await insertProduct(body,userId);
         if (response.data.status === "400") {
             setErrorNameProduct("Sản phẩm đã tồn tại");
         } else {

@@ -20,7 +20,7 @@ import {BsTrash} from "react-icons/bs";
 import {FiEdit2} from "react-icons/fi";
 import {convertCurrency} from "~/untils/convertCurrency";
 import {useTableStyles} from "~/components/CustomerMaterial";
-import {deleteProduct, getAllProduct} from "~/services/workspaces.sevices";
+import {deleteProduct, getAllProductByAdmin} from "~/services/workspaces.sevices";
 import {NotificationManager} from "react-notifications";
 
 
@@ -32,7 +32,7 @@ function Product(props) {
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         setIsLoading(true);
-        getAllProduct(0).then((res) => setProducts(res?.data.data))
+        getAllProductByAdmin(0).then((res) => setProducts(res?.data.data))
     }, [])
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -54,10 +54,10 @@ function Product(props) {
     }));
     const handleRemove = async (id) => {
         const response = await deleteProduct(id);
-        if(response?.data.status === "200"){
+        if (response?.data.status === "200") {
             NotificationManager.success("Xoá sản phẩm thành công");
             setIsLoading(true);
-            getAllProduct()
+            getAllProductByAdmin(0)
                 .then((res) => setProducts(res?.data.data))
                 .finally(() => setIsLoading(false));
         }

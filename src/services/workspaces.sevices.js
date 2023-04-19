@@ -8,15 +8,18 @@ export const getCategory = async () => {
 export const getAllProduct = async (maxResult) => {
     return await instance.get(`/products/all?maxResult=${maxResult}`);
 };
+export const getAllProductByAdmin = async (maxResult) => {
+    return await instance.get(`/products/all/admin?maxResult=${maxResult}`,{headers: authHeader()});
+};
 export const getAllOrder = async () => {
     const result = await instance.get("/order", {headers: authHeader()});
     return result.data;
 };
-export const insertProduct = async (body) => {
-    return await instance.post("/products", body, {headers: authHeader()});
+export const insertProduct = async (body,userId) => {
+    return await instance.post(`/products?userId=${userId}`, body, {headers: authHeader()});
 };
-export const updateProduct = async (productId, body) => {
-    return await instance.put(`/products/${productId}`, body, {headers: authHeader()});
+export const updateProduct = async (productId, body,userId) => {
+    return await instance.put(`/products/${productId}?userId=${userId}`, body, {headers: authHeader()});
 };
 export const deleteProduct = async (productId) => {
     return await instance.delete(`/products/${productId}`, {headers: authHeader()});

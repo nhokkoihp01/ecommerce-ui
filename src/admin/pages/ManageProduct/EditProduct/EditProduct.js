@@ -3,13 +3,13 @@ import classNames from "classnames/bind";
 import {Button, FormControl, FormHelperText, Grid, InputBase, MenuItem, Select} from "@material-ui/core";
 import {useParams} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
+import {v4} from "uuid";
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 
 import styles from "./EditProduct.module.scss";
 import UpLoadFileImage from "~/components/UploadFileImage";
 import {getCategory, getProductById, updateProduct} from "~/services/workspaces.sevices";
-import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "~/firebase/firebase";
-import {v4} from "uuid";
 
 const cx = classNames.bind(styles);
 
@@ -67,7 +67,6 @@ function EditProduct(props) {
     const handleChange = (event) => {
         setCategoryId(event.target.value);
     };
-    console.log(images)
     const classProduct = {
         nameProduct: nameProduct,
         description: '',
@@ -139,7 +138,9 @@ function EditProduct(props) {
             sale: formValue.sale,
             categoryId: categoryId,
         };
-        const response = await updateProduct(id,body);
+        const  user = JSON.parse(localStorage.getItem("token"))
+        const userId = user.userId
+        const response = await updateProduct(id,body,userId);
         if (response.data.status === "400") {
             NotificationManager.error("Cập nhật sản phẩm thất bại")
         } else {
