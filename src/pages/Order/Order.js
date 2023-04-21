@@ -42,7 +42,6 @@ function Order(props) {
                 address: address,
                 cartItems: carts
             }
-            console.log(body)
             const response = await createOrder(user.id, body)
             if(response?.status === 200){
                 NotificationManager.success('Đặt đơn hàng thành công', 'Sau 5s chuyển tới trang chủ', 5000,()=>{

@@ -15,7 +15,6 @@ function OrderUser(props) {
     useEffect(() => {
         async function fetchData() {
             const user = JSON.parse(localStorage.getItem("token"))
-            console.log(user.userId)
             if(user){
                 const response = await getOrderByUserId(user.userId)
                 const data = response?.data
@@ -54,15 +53,15 @@ function OrderUser(props) {
                                                                 {order.description}
                                                             </h5>
                                                             <p className={cx('order-user-left-item-product-quantity')}>
-                                                                {order.quantity}
+                                                                x{order.quantity}
                                                             </p>
                                                         </div>
                                                         <div className={cx('order-user-left-item-price')}>
                                                             <p className={cx('order-user-left-item-price-old')}>
-                                                                {order.oldPrice}
+                                                                {convertCurrency(order.oldPrice)}
                                                             </p>
                                                             <p className={cx('order-user-left-item-price-new')}>
-                                                                {order.newPrice}
+                                                                {convertCurrency(order.newPrice)}
                                                             </p>
                                                         </div>
                                                     </div>
