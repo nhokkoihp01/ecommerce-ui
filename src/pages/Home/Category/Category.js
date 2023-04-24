@@ -3,12 +3,12 @@ import classNames from "classnames/bind";
 import {  Container } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {useTranslation} from "react-i18next";
 
 
 import styles from "./Category.module.scss";
-import CategoryItem from "~/pages/Home/category/category-item";
+import CategoryItem from '~/pages/Home/Category/CategoryItem'
 import {getCategory} from "~/services/workspaces.sevices";
-import {useTranslation} from "react-i18next";
 
 
 const cx = classNames.bind(styles);
