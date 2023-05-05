@@ -8,6 +8,7 @@ import {Container} from "@mui/material";
 import styles from "./Home.module.scss";
 import Category from "~/pages/Home/Category";
 import Product from "~/pages/Home/Product";
+import BackTop from '~/components/BackTop/BackTop';
 
 
 
@@ -20,6 +21,7 @@ function Home(props) {
             <Container>
                <Category/>
                 <Product/>
+                <BackTop/>
             </Container>
         </div>
 
