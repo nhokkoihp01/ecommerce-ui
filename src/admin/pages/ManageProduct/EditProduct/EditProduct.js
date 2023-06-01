@@ -144,7 +144,7 @@ function EditProduct(props) {
         if (response.data.status === "400") {
             NotificationManager.error("Cập nhật sản phẩm thất bại")
         } else {
-            NotificationManager.success("Thêm sản phẩm thành công");
+            NotificationManager.success("Cập nhật sản phẩm thành công");
         }
 
 
